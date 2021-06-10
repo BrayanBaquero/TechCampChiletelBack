@@ -1,6 +1,5 @@
 package com.chiletel.entity;
 
-import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,29 +12,26 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "CLIENTE")
-public class Cliente {
+@Table(name = "TECNICO")
+public class Tecnico {
 	@Id
 	@GeneratedValue( strategy  = GenerationType.SEQUENCE, generator = "CUST_SEQ")
-    @SequenceGenerator(sequenceName = "cliente_seq", allocationSize = 1, name = "CUST_SEQ")
-	@Column(name="CLIENTE_ID")
-	private Integer id;
+    @SequenceGenerator(sequenceName = "TECNICO_SEQ", allocationSize = 1, name = "CUST_SEQ")
+	@Column(name="TECNICO_ID")
+	private int id;
 	@Column(name = "NOMBRE")
 	private String nombre;
-	@Column(name="APELLIDO")
+	@Column(name = "APELLIDO")
 	private String apellido;
-	@Column(name = "IDENTIFICACION")
+	@Column(name = "INDENTIFICACION")
 	private String numeroIden;
-	@Column(name = "TIPO_CLIENTE_ID")
-	private int tipoCliente;
 	@Column(name = "EMAIL")
 	private String email;
 	@Column(name = "TELEFONO")
 	private String telefono;
 	@Column(name = "DIRECCION")
 	private String direccion;
-	@Column(name = "ZONA_ID")
-	private int zona;
-	
+	@Column(name = "CUADRILLA_ID")
+	private int cuadrilla;
 
 }
