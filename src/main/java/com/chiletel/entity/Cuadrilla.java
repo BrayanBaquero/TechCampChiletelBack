@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import lombok.Data;
 
 @Data
-@Entity
+//@Entity
 @Table(name = "CUADRILLA")
 
 public class Cuadrilla {

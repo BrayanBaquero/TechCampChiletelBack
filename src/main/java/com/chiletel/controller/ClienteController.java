@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.chiletel.dto.ClienteDTO;
+
 import com.chiletel.entity.Cliente;
 import com.chiletel.entity.TipoCliente;
 import com.chiletel.mapper.MapperData;
@@ -37,10 +37,10 @@ public class ClienteController {
 	@Autowired 
 	public ITipoCliente tipoCliente;
 	
-	@PostMapping("/agregar")
-	public ResponseEntity<ClienteDTO> agregar(@RequestBody Cliente cliente){
-		return ResponseEntity.status(HttpStatus.ACCEPTED).body(mapp.clienteToDto(clienteRepo.save(cliente)));
-	}
+	//@PostMapping("/agregar")
+	//public ResponseEntity<ClienteDTO> agregar(@RequestBody Cliente cliente){
+	//	return ResponseEntity.status(HttpStatus.ACCEPTED).body(mapp.clienteToDto(clienteRepo.save(cliente)));
+	//}
 	//@ApiOperation(value = "", authorizations = { @Authorization(value="jwtToken") })
 	
 	

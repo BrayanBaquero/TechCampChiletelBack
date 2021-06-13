@@ -1,0 +1,13 @@
+package com.chiletel.service;
+
+import java.util.List;
+
+import com.chiletel.dto.CuadrillaDTO;
+import com.chiletel.dto.NuevaCuadrillaDTO;
+
+public interface ICuadrillaService {
+	public List<CuadrillaDTO> getAll();
+	public void add(NuevaCuadrillaDTO nuevaCuadrillaDTO);
+	public void delete(int id);
+	public void update(int id, NuevaCuadrillaDTO nuevaCuadrillaDTO);
+}

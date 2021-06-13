@@ -80,6 +80,7 @@ public class MainSecurity extends WebSecurityConfigurerAdapter{
 			        "/v2/api-docs",
 			        "/webjars/**").permitAll()
 			.antMatchers("/auth/**").permitAll()
+			//.antMatchers("/**").permitAll()
 			.anyRequest().authenticated()
 			.and().exceptionHandling()
             .defaultAuthenticationEntryPointFor(swaggerAuthenticationEntryPoint(), new CustomRequestMatcher(AUTH_LIST))
