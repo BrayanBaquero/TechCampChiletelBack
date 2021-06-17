@@ -12,12 +12,12 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "TIPO_CLIENTE")
+@Table(name = "TIPOS_CLIENTE")
 public class TipoCliente {
 	@Id
 	@GeneratedValue( strategy  = GenerationType.SEQUENCE, generator = "CUST_SEQ")
-    @SequenceGenerator(sequenceName = "tipo_cliente_seq", allocationSize = 1, name = "CUST_SEQ")
-	@Column(name = "TIPO_CLIENTE_ID")
+    @SequenceGenerator(sequenceName = "tipos_cliente_seq", allocationSize = 1, name = "CUST_SEQ")
+	@Column(name = "ID_TIPO_CLIENTE")
 	private Integer id;
 	@Column(name = "NOMBRE")
 	private String tipo;

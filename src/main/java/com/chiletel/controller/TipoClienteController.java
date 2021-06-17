@@ -17,8 +17,10 @@ import com.chiletel.entity.TipoCliente;
 import com.chiletel.repository.ITipoCliente;
 import com.chiletel.service.ITipoClienteService;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+@Api(tags = "4: Tipo de cliente",description = "Configuración de tipos de cliente")
 @RestController
 @RequestMapping("/api/tipocliente")
 public class TipoClienteController {

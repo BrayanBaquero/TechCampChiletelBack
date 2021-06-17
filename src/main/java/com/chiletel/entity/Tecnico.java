@@ -12,26 +12,28 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "TECNICO")
+@Table(name = "TECNICOS")
 public class Tecnico {
 	@Id
 	@GeneratedValue( strategy  = GenerationType.SEQUENCE, generator = "CUST_SEQ")
-    @SequenceGenerator(sequenceName = "TECNICO_SEQ", allocationSize = 1, name = "CUST_SEQ")
-	@Column(name="TECNICO_ID")
+    @SequenceGenerator(sequenceName = "TECNICOS_SEQ", allocationSize = 1, name = "CUST_SEQ")
+	@Column(name="ID_TECNICO")
 	private int id;
 	@Column(name = "NOMBRE")
 	private String nombre;
 	@Column(name = "APELLIDO")
 	private String apellido;
-	@Column(name = "INDENTIFICACION")
-	private String numeroIden;
+	@Column(name = "INDENTIFICACION",unique = true)
+	private int numeroIden;
 	@Column(name = "EMAIL")
 	private String email;
 	@Column(name = "TELEFONO")
 	private String telefono;
 	@Column(name = "DIRECCION")
 	private String direccion;
-	@Column(name = "CUADRILLA_ID")
+	@Column(name = "ID_CUADRILLA")
 	private int cuadrilla;
+	@Column(name ="BORRADO",columnDefinition = "false")
+	private boolean borrado;
 
 }

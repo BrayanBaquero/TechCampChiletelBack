@@ -16,18 +16,17 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "ORDEN_ATENCION")
+@Table(name = "ORDENES_ATENCION")
 public class OrdenAtencion {
 	@Id
 	@GeneratedValue( strategy  = GenerationType.SEQUENCE, generator = "CUST_SEQ")
-    @SequenceGenerator(sequenceName = "ORDEN_ATENCION_SEQ", allocationSize = 1, name = "CUST_SEQ")
-	@Column(name="ORDEN_ATENCION")
+    @SequenceGenerator(sequenceName = "ORDENES_ATENCION_SEQ", allocationSize = 1, name = "CUST_SEQ")
+	@Column(name="ID_ORDEN_ATENCION")
 	private int id;
-	@Column(name = "DAÑO")
+	@Column(name = "ID_INCIDENCIA")
 	private int daño;
-	@Column(name = "TIPO_DAÑO")
-	private int tipoDaño;
-	@Temporal(TemporalType.TIME)
-	@Column(name = "TIEMPO")
-	private Date tiempo;
+	@Column(name = "NUMERO_ORDEN")
+	private String numOrden;
+	@Column(name = "AGENDADO",columnDefinition = "false")
+	private boolean tiempo;
 }

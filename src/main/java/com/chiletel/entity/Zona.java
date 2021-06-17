@@ -12,14 +12,14 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "ZONA")
+@Table(name = "ZONAS")
 public class Zona {
 	@Id
 	@GeneratedValue( strategy  = GenerationType.SEQUENCE, generator = "CUST_SEQ")
-    @SequenceGenerator(sequenceName = "ZONA_SEQ", allocationSize = 1, name = "CUST_SEQ")
-	@Column(name="ZONA_ID")
+    @SequenceGenerator(sequenceName = "ZONAS_SEQ", allocationSize = 1, name = "CUST_SEQ")
+	@Column(name="ID_ZONAS")
 	private int id;
 	@Column(name = "NOMBRE")
-	private int nombre;
+	private String nombre;
 
 }

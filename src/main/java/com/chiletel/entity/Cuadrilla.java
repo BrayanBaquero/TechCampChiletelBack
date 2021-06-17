@@ -11,14 +11,14 @@ import javax.persistence.Table;
 import lombok.Data;
 
 @Data
-//@Entity
-@Table(name = "CUADRILLA")
+@Entity
+@Table(name = "CUADRILLAS")
 
 public class Cuadrilla {
 	@Id
 	@GeneratedValue( strategy  = GenerationType.SEQUENCE, generator = "CUST_SEQ")
-    @SequenceGenerator(sequenceName = "CUADRILLA_SEQ", allocationSize = 1, name = "CUST_SEQ")
-	@Column(name = "CUADRILLA_ID")
+    @SequenceGenerator(sequenceName = "CUADRILLAS_SEQ", allocationSize = 1, name = "CUST_SEQ")
+	@Column(name = "ID_CUADRILLA")
 	private String id;
 	@Column(name = "NOMBRE")
 	private String nombre;

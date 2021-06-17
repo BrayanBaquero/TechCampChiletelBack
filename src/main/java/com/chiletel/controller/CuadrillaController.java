@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,10 +18,12 @@ import com.chiletel.dto.CuadrillaDTO;
 import com.chiletel.dto.NuevaCuadrillaDTO;
 import com.chiletel.service.ICuadrillaService;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
+@Api(tags = "3: Cuadrilla",description = "Gestión de cuadrillas")
 @RestController
 @RequestMapping("/api/cuadrilla")
 public class CuadrillaController {
@@ -29,7 +32,7 @@ public class CuadrillaController {
 	
 	
 	
-	@ApiOperation(value = "Obtiene todas la cuadrillas creadas y la cantidad de miembros asignados a cada una")
+	@ApiOperation(value = "Obtiene todas las cuadrillas creadas y la cantidad de miembros asignados a cada una")
 	@GetMapping
 	public ResponseEntity<List<CuadrillaDTO>> getAll(){
 		return new ResponseEntity(iCuadrillaService.getAll(),HttpStatus.OK);
@@ -39,12 +42,13 @@ public class CuadrillaController {
 	
 	@ApiOperation(value = "Se crea una nueva cuadrilla")
 	@ApiResponses(value = {
-			 @ApiResponse(code=400,message = "Alias de cuadrilla ya existente")
+			 @ApiResponse(code=400,message = "Alias de cuadrilla ya existente"),
+			 @ApiResponse(code=201,message = "Cuadrilla creada con exito.")
 	 })
 	@PostMapping
 	public  ResponseEntity<?> post(@RequestBody NuevaCuadrillaDTO nuevaCuadrillaDTO) {
 		iCuadrillaService.add(nuevaCuadrillaDTO);
-		return new ResponseEntity(HttpStatus.OK);
+		return new ResponseEntity(HttpStatus.CREATED);
 	}
 	
 	
@@ -57,4 +61,12 @@ public class CuadrillaController {
 		iCuadrillaService.update(id, nuevaCuadrillaDTO);
 		return new ResponseEntity(HttpStatus.OK);
 	}
+	
+	@ApiOperation(value = "Eliminar cuadrilla")
+	@DeleteMapping("{id}")
+	public ResponseEntity<?> update(@PathVariable("id")int id){
+		iCuadrillaService.delete(id);
+		return new ResponseEntity(HttpStatus.OK);
+	}
+	
 }

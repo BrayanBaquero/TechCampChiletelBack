@@ -12,15 +12,17 @@ import org.springframework.web.bind.annotation.RestController;
 import com.chiletel.dto.OrdenAtencionDTO;
 import com.chiletel.service.IOrdenAtencionService;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+@Api(tags = "7: Ordenes de atención",description = "Ver ordenes de atención")
 @RestController
 @RequestMapping("/api/ordenatencion")
 public class OrdenAtencionController {
 	@Autowired
 	private IOrdenAtencionService iOrdenAtencionService;
 	
-	@ApiOperation(value = "Obtiene Ordenes de atencion no agendadas")
+	@ApiOperation(value = "Obtiene ordenes de atención no agendadas")
 	@GetMapping
 	public ResponseEntity<List<OrdenAtencionDTO>> getAll(){
 		return new ResponseEntity(iOrdenAtencionService.getAllOrdenesAtencion(),HttpStatus.OK);

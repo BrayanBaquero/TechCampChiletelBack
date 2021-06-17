@@ -14,6 +14,8 @@ public class AgendaDTO {
 	@ApiModelProperty(position = 0)
 	private String tecnico;
 	@ApiModelProperty(position = 1)
-	private Set<Agenda> horas;
+	private String identificacion;
+	@ApiModelProperty(position = 2)
+	private Set<DetallesAgendaDTO> detalles;
 
 }

@@ -2,6 +2,7 @@ package com.chiletel.controller;
 
 import java.util.List;
 
+import org.hibernate.validator.internal.IgnoreForbiddenApisErrors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,11 +19,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.chiletel.dto.TecnicoDTO;
 import com.chiletel.service.ITecnicoService;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@Controller
+@Api(tags = "2: Técnico",description = "Getión de miembros del equipo técnico")
+@IgnoreForbiddenApisErrors(reason = "")
 @RestController
 @RequestMapping("/api/tecnico")
 public class TecnicoController {
@@ -36,32 +39,33 @@ public class TecnicoController {
 	}
 	
 	@ApiResponses(value = {
-			 @ApiResponse(code=400,message = "Numero de identificacion ya existe/El tecnico debe tener minimo un tipo de daño asociado")
+			 @ApiResponse(code=400,message = "Numero de identificacion ya existe/El tecnico debe tener minimo un tipo de daño asociado"),
+			 @ApiResponse(code=200,message = "Tecnico creado con exito.")
 	 })
 	@ApiOperation(value = "Se agrega un nuevo tecnico a la empresa")
 	@PostMapping
 	public ResponseEntity<?> add(@RequestBody TecnicoDTO tecnicoDTO){
 		iTecnicoService.AddTecnico();
-		return ResponseEntity.status(HttpStatus.OK).build();
+		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 	
 	@ApiResponses(value = {
-			 @ApiResponse(code=400,message = "El tecnico debe tener minimo un tipo de daño asociado")
+			 @ApiResponse(code=400,message = "El técnico debe tener minimo un tipo de daño asociado")
 	 })
-	@ApiOperation(value = "Se actualizan los datos personales de un tecnico")
+	@ApiOperation(value = "Se actualizan los datos personales de un técnico")
 	@PutMapping("{identificacion}")
 	public ResponseEntity<?> update(@PathVariable(required = true,name ="identificacion")String iden, @RequestBody TecnicoDTO tecnicoDTO){
 		iTecnicoService.UpdateTecnico(iden);
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
 	
-	@ApiOperation(value = "Se borra un tecnico registrado en la empresa")
+	@ApiOperation(value = "Se borra un técnico registrado en la empresa")
 	@DeleteMapping("{identificacion}")
 	public ResponseEntity<?> delete(@PathVariable("identificacion")String identificacion){
 		iTecnicoService.DeleteTecnico();
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
-	@ApiOperation(value = "Se obtienen los datos del un tecnico por su identificacion")
+	@ApiOperation(value = "Se obtienen los datos de un técnico por su identificacion")
 	@GetMapping("{identificacion}")
 	public ResponseEntity<TecnicoDTO> getById(@PathVariable("identificacion")String idenfificacion){
 		return ResponseEntity.status(HttpStatus.OK).body(iTecnicoService.getTecnicoByIdentificacion(idenfificacion));

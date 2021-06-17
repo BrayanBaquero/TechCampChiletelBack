@@ -12,9 +12,6 @@ public class DañoDTO {
 	private int tipoDaño;
 	@ApiModelProperty(position = 2)
 	private String descripcion;
-	@ApiModelProperty(position = 3)
-	private boolean estado;
-	@ApiModelProperty(position = 4)
-	private Date fechaRegistro;
+	
 
 }

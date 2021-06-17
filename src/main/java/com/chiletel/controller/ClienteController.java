@@ -21,8 +21,10 @@ import com.chiletel.mapper.MapperData;
 import com.chiletel.repository.IClienteRepository;
 import com.chiletel.repository.ITipoCliente;
 
+import io.swagger.annotations.Api;
 
 
+@Api(tags = "Cliente")
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api/cliente")

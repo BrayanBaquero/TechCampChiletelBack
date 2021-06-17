@@ -32,6 +32,12 @@ import com.chiletel.security.service.RolService;
 import com.chiletel.security.service.UserDetailsServiceImpl;
 import com.chiletel.security.service.UsuarioService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiOperation;
+
+@Api(tags = "1: Autenticación",description = "Autenticacion de usuario en el sistema usando JWT")
+//@ApiOperation(value="",position = 0)
 @RestController
 @RequestMapping("/auth")
 @CrossOrigin
@@ -46,6 +52,7 @@ public class AuthController {
 	RolService rolService;
 	@Autowired
 	JwtProvider jwtProvider;
+	
 	
 	@PostMapping("/nuevo")
 	public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult){
@@ -66,6 +73,7 @@ public class AuthController {
 		 return new ResponseEntity("Usuario guardado", HttpStatus.CREATED);
 	}
 	
+	@ApiOperation(value = "Ingreso de usuario al sistema.")
 	@PostMapping("/login")
 	public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult){
 		if(bindingResult.hasErrors())

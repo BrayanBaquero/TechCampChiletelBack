@@ -18,16 +18,16 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "AGENDA")
+@Table(name = "AGENDAS")
 public class Agenda {
 	@Id
 	@GeneratedValue( strategy  = GenerationType.SEQUENCE, generator = "CUST_SEQ")
-    @SequenceGenerator(sequenceName = "AGENDA_SEQ", allocationSize = 1, name = "CUST_SEQ")
-	@Column(name="AGENDA_ID")
+    @SequenceGenerator(sequenceName = "AGENDAS_SEQ", allocationSize = 1, name = "CUST_SEQ")
+	@Column(name="ID_AGENDA")
 	private int id;
-	@Column(name = "ORDEN_ATENCION_ID")
+	@Column(name = "ID_ORDEN_ATENCION")
 	private int ordenAtencion;
-	@Column(name = "TECNICO_ID")
+	@Column(name = "ID_TECNICO")
 	private int tecnico;
 	@Column(name = "H_INICIO")
 	private Date horaInicio;

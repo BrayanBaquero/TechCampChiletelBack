@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import com.chiletel.entity.Cliente;
 import com.chiletel.mapper.MapperData;
 
-@SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
+@SpringBootApplication
 public class TechCampFpApplication {
 
 	public static void main(String[] args) {
