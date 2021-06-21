@@ -17,7 +17,7 @@ import com.chiletel.service.IDañoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@Api(tags = "6: Daños de servicio",description = "Daños en el servicio de telefonico")
+@Api(tags = "5: Daños de servicio",description = "Daños en el servicio de telefonico")
 @RestController
 @RequestMapping("/api/daño")
 public class DañoController {

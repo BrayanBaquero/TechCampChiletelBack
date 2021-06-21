@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.chiletel.entity.TipoCliente;
 
 @Repository
-public interface ITipoCliente extends JpaRepository<TipoCliente, Integer>{
+public interface ITipoClienteRepository extends JpaRepository<TipoCliente, Integer>{
 
 }

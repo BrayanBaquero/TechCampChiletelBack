@@ -1,23 +1,36 @@
 package com.chiletel.dto;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.validation.constraints.Email;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiParam;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
-@ApiModel
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class TecnicoDTO {
-	@ApiModelProperty(position = 1)
+	
 	private String nombre;
-	@ApiModelProperty(position = 2)
 	private String apellido;
-	@ApiModelProperty(position = 3)
-	private String numeroIdentificacion;
-	@ApiModelProperty(position = 4)
+	private int numeroIden;
+	@Email(message = "Formato de correo electronico no valido")
 	private String email;
-	@ApiModelProperty(position = 5)
 	private String telefono;
-	@ApiModelProperty(position = 6)
+	private String direccion;
 	private String cuadrilla;
+	private Set<String> tDaño=new HashSet<>();
+
+
+	
+	
 }

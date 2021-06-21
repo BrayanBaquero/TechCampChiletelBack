@@ -1,5 +1,7 @@
 package com.chiletel.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +17,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@Api(tags = "8: Agenda",description = "Administración de agenda de equipo técnico")
+@Api(tags = "7: Agenda",description = "Administración de agenda de equipo técnico")
 @RestController
 @RequestMapping("/api/agenda")
 public class AgendaController {
@@ -25,7 +27,7 @@ public class AgendaController {
 	
 	@ApiOperation(value = "Obtener agenda de trabajo de equipo técnico.")
 	@GetMapping
-	public ResponseEntity<AgendaDTO> gettAll(){
+	public ResponseEntity<List<AgendaDTO>> gettAll(){
 		return null;
 	}
 	

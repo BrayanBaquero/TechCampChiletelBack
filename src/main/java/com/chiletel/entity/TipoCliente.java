@@ -15,11 +15,11 @@ import lombok.Data;
 @Table(name = "TIPOS_CLIENTE")
 public class TipoCliente {
 	@Id
-	@GeneratedValue( strategy  = GenerationType.SEQUENCE, generator = "CUST_SEQ")
-    @SequenceGenerator(sequenceName = "tipos_cliente_seq", allocationSize = 1, name = "CUST_SEQ")
+	@GeneratedValue( strategy  = GenerationType.SEQUENCE, generator = "tipos_cliente_seq")
+    @SequenceGenerator(sequenceName = "tipos_cliente_seq", allocationSize = 1, name = "tipos_cliente_seq")
 	@Column(name = "ID_TIPO_CLIENTE")
 	private Integer id;
-	@Column(name = "NOMBRE")
+	@Column(name = "NOMBRE",length = 40)
 	private String tipo;
 	@Column(name = "PRIORIDAD")
 	private int prioridad;

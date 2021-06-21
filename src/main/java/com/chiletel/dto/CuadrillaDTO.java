@@ -9,10 +9,7 @@ import lombok.Data;
 
 @Data
 public class CuadrillaDTO {
-	@ApiModelProperty(position = 0)
 	private String nombre;
-	@ApiModelProperty(position = 1)
 	private int miembros;
-	@ApiModelProperty(position = 2)
 	private Set<Zona> zona;
 }

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.chiletel.exceptionHandler.BadRequestException;
 import com.chiletel.security.dto.JwtDto;
 import com.chiletel.security.dto.LoginUsuario;
 import com.chiletel.security.dto.NuevoUsuario;
@@ -53,7 +54,7 @@ public class AuthController {
 	@Autowired
 	JwtProvider jwtProvider;
 	
-	
+	@ApiOperation(hidden = true, value = "")
 	@PostMapping("/nuevo")
 	public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult){
 		 if(bindingResult.hasErrors())
@@ -77,12 +78,18 @@ public class AuthController {
 	@PostMapping("/login")
 	public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult){
 		if(bindingResult.hasErrors())
-			return new ResponseEntity("Campos mal puestos",HttpStatus.BAD_REQUEST );
-		Authentication authentication=authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginUsuario.getNombreUsuario(), loginUsuario.getPassword()));
-		SecurityContextHolder.getContext().setAuthentication(authentication);
-		String jwt=jwtProvider.generateToken(authentication);
-		UserDetails userDetails=(UserDetails) authentication.getPrincipal();
-		JwtDto jwtDto=new JwtDto(jwt, userDetails.getUsername(), userDetails.getAuthorities());
-		return new ResponseEntity(jwtDto,HttpStatus.OK);
+			throw new BadRequestException("Campos mal puestos");
+			//return new ResponseEntity("Campos mal puestos",HttpStatus.BAD_REQUEST );
+		try {
+			Authentication authentication=authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginUsuario.getNombreUsuario(), loginUsuario.getPassword()));
+			SecurityContextHolder.getContext().setAuthentication(authentication);
+			String jwt=jwtProvider.generateToken(authentication);
+			UserDetails userDetails=(UserDetails) authentication.getPrincipal();
+			JwtDto jwtDto=new JwtDto(jwt, userDetails.getUsername(), userDetails.getAuthorities());
+			return new ResponseEntity(jwtDto,HttpStatus.OK);
+		} catch (Exception e) {
+			throw new BadRequestException("Usuario o contraseña invalidos");
+		}
+		
 	}
 }

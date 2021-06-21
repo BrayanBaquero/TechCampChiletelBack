@@ -17,9 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.chiletel.entity.Cliente;
 import com.chiletel.entity.TipoCliente;
-import com.chiletel.mapper.MapperData;
 import com.chiletel.repository.IClienteRepository;
-import com.chiletel.repository.ITipoCliente;
+import com.chiletel.repository.ITipoClienteRepository;
 
 import io.swagger.annotations.Api;
 
@@ -33,11 +32,10 @@ public class ClienteController {
 	@Autowired
 	public IClienteRepository clienteRepo;
 	
-	@Autowired
-	public MapperData mapp;
+	
 	
 	@Autowired 
-	public ITipoCliente tipoCliente;
+	public ITipoClienteRepository tipoCliente;
 	
 	//@PostMapping("/agregar")
 	//public ResponseEntity<ClienteDTO> agregar(@RequestBody Cliente cliente){

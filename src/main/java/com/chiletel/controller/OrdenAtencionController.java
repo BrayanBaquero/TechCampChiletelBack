@@ -15,7 +15,7 @@ import com.chiletel.service.IOrdenAtencionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@Api(tags = "7: Ordenes de atención",description = "Ver ordenes de atención")
+@Api(tags = "6: Ordenes de atención",description = "Ver ordenes de atención")
 @RestController
 @RequestMapping("/api/ordenatencion")
 public class OrdenAtencionController {

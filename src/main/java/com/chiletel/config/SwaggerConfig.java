@@ -56,7 +56,11 @@ public class SwaggerConfig implements WebMvcConfigurer{
 	private ApiInfo apiinfo() {
 		return new ApiInfo(
 				"Chiletel API",
-				"Descripcion: Servicio que permite gestionar las visittas tecnicas del equipo tecnico para solucionar fallas en el servicio de telefonia de los clientes.",
+				"Descripcion: Servicio que permite gestionar las visitas del equipo tecnico para "
+				+ "solucionar fallas en el servicio de telefonia que presenten los clientes.\n\r"
+				+ "El acceso al sistema se realiza mediante jwt teniendo para endpoint protegido. "
+				+ "Para acceder se debe en cada petición enviar el token en el header:"
+				+ "\n Autorization: Bearer token",
 				"1.0",
 				null,
 				new Contact("Brayan Baquero", null, "brayan.baquero@segurosbolibar.com"),
