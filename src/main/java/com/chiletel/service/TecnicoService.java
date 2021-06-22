@@ -43,12 +43,12 @@ public class TecnicoService implements ITecnicoService{
 
 	@Override
 	public void AddTecnico(TecnicoDTO tecnicoDTO) {
-		if(tecnicoDTO.getTDaño().isEmpty())
+		if(tecnicoDTO.getTDano().isEmpty())
 			throw new BadRequestException("El tecnico debe tener al menos un tipo de daño asociado");
 		
 		Tecnico tecnico= mapperTecnico.ToEntity(tecnicoDTO);
 		Set<TipoDaño> tdaños=new HashSet<>();
-		tecnicoDTO.getTDaño().forEach(daño->{
+		tecnicoDTO.getTDano().forEach(daño->{
 			tdaños.add(ITipoDañoRepository.findByNombre(daño).get());
 		});
 		tecnico.setCuadrilla(iCuadrillaRepository.findByNombre(tecnicoDTO.getCuadrilla()).get());
@@ -66,7 +66,7 @@ public class TecnicoService implements ITecnicoService{
 	public void UpdateTecnico(int ident,TecnicoDTO tecnicoDTO) {
 		if(!iTecnicoRepository.existsBynumeroIden(ident))
 			throw new NotFoundException("Tecnico no existe");
-		if(tecnicoDTO.getTDaño().isEmpty())
+		if(tecnicoDTO.getTDano().isEmpty())
 			throw new BadRequestException("Debe haber al menos un tipo de daño asociado");
 		if(!iCuadrillaRepository.existsByNombre(tecnicoDTO.getCuadrilla()))
 			throw new BadRequestException("Cuadrilla no existe");
@@ -75,7 +75,7 @@ public class TecnicoService implements ITecnicoService{
 		//Mapeo de dto a entidad-------------------------
 		Tecnico tecnico=mapperTecnico.ToEntity(tecnicoDTO);
 		Set<TipoDaño> tdaños=new HashSet<>();
-		tecnicoDTO.getTDaño().forEach(daño->{
+		tecnicoDTO.getTDano().forEach(daño->{
 			tdaños.add(ITipoDañoRepository.findByNombre(daño).get());
 		});
 		tecnico.setCuadrilla(iCuadrillaRepository.findByNombre(tecnicoDTO.getCuadrilla()).get());
@@ -90,7 +90,7 @@ public class TecnicoService implements ITecnicoService{
 		if(!iTecnicoRepository.existsBynumeroIden(ident))
 			throw new NotFoundException("Tecnico no existe");
 		Optional<Tecnico> tecnico=iTecnicoRepository.findBynumeroIden(ident);
-		tecnico.get().setBorrado(true);
+		tecnico.get().setBorrado(1);
 		iTecnicoRepository.save(tecnico.get());
 	}
 

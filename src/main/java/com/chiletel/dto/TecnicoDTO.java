@@ -28,7 +28,7 @@ public class TecnicoDTO {
 	private String telefono;
 	private String direccion;
 	private String cuadrilla;
-	private Set<String> tDaño=new HashSet<>();
+	private Set<String> tDano=new HashSet<>();
 
 
 	

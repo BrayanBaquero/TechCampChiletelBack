@@ -50,7 +50,7 @@ public class Usuario {
 	@Column(name = "EMAIL",length = 100)
 	private String email;
 	@NotNull
-	@Column(name = "PASSWORD",length = 20)
+	@Column(name = "PASSWORD",length = 50)
 	private String password;
 	@NotNull
 	@ManyToMany(fetch = FetchType.EAGER)

@@ -41,7 +41,7 @@ public class Tecnico {
 	@Column(name = "APELLIDO",length = 50)
 	private String apellido;
 	@Column(name = "IDENTIFICACION",columnDefinition = "NUMBER(20)")
-	private BigInteger numeroIden;
+	private int numeroIden;
 	@Column(name = "EMAIL",length = 100)
 	private String email;
 	@Column(name = "TELEFONO",length = 20)
@@ -51,8 +51,8 @@ public class Tecnico {
 	@ManyToOne(optional = false,fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_CUADRILLA",foreignKey = @ForeignKey(name = "FK_TECNICO_CUADRILLA_01") )
 	private Cuadrilla cuadrilla;
-	@Column(name ="BORRADO",length = 1)
-	private Boolean borrado;
+	@Column(name ="BORRADO",columnDefinition = "NUMBER(1)")
+	private int borrado;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name="TIPOS_INCIDENCIA_TECNICOS",

@@ -37,7 +37,7 @@ public class MapperTecnico  {
 		if(tecnico!=null) {
 			mapper.typeMap(Tecnico.class, TecnicoDTO.class)
 				.addMapping(x -> x.getCuadrilla().getNombre(), TecnicoDTO::setCuadrilla)
-				.addMappings(mapper->mapper.using(new TDañosListConverter()).map(Tecnico::getTDaño, TecnicoDTO::setTDaño));
+				.addMappings(mapper->mapper.using(new TDañosListConverter()).map(Tecnico::getTDaño, TecnicoDTO::setTDano));
 				//.addMappings(m->m.using(ctx->((String)ctx.getSource()).toUpperCase()).map(Tecnico::getNombre, TecnicoDTO::setNombre))
 			tecnicoDTO=mapper.map(tecnico, TecnicoDTO.class);
 		}

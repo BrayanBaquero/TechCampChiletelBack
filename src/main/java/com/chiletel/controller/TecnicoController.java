@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,6 +34,7 @@ import io.swagger.annotations.ApiResponses;
 @Api(tags = "2: Técnico",description = "Getión de miembros del equipo técnico")
 @RestController
 @RequestMapping("/api/tecnico")
+@CrossOrigin
 public class TecnicoController {
 	@Autowired
 	private ITecnicoService iTecnicoService;
