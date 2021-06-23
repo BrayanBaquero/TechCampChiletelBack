@@ -16,6 +16,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import lombok.Data;
 
@@ -35,9 +36,9 @@ public class Cuadrilla {
 	private int id;
 	@Column(name = "NOMBRE")
 	private String nombre;
-	@Column(name = "BORRADO" ,length = 1)
-	private Boolean borrado;
-	
+	@Column(name = "BORRADO" ,columnDefinition = "NUMBER(1)")
+	private int borrado;
+	@Transient
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name="ZONAS_CUADRILLAS",
 			   joinColumns = @JoinColumn(foreignKey = @ForeignKey(name = "FK_ZONAS_CUADRILLAS_01") 

@@ -1,6 +1,7 @@
 package com.chiletel.exceptionHandler;
 
 import java.time.LocalDateTime;
+import java.util.NoSuchElementException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +15,8 @@ public class ExceptionConfig {
 	@ExceptionHandler(NotFoundException.class)
 	public ResponseEntity<ExceptionResponse> notFoundException(Exception e){
 		ExceptionResponse response = new ExceptionResponse();
-        response.setErrorCode("NOT_FOUND");
-        response.setErrorMessage(e.getMessage());
+        response.setCode("NOT_FOUND");
+        response.setMessage(e.getMessage());
         response.setTimestamp(LocalDateTime.now());
 		return new ResponseEntity<ExceptionResponse>(response,HttpStatus.NOT_FOUND);
 	}
@@ -23,8 +24,17 @@ public class ExceptionConfig {
 	@ExceptionHandler(BadRequestException.class)
 	public ResponseEntity<ExceptionResponse> badRequestException(Exception e){
 		ExceptionResponse response = new ExceptionResponse();
-        response.setErrorCode("BAD_REQUEST");
-        response.setErrorMessage(e.getMessage());
+        response.setCode("BAD_REQUEST");
+        response.setStatus(400);
+        response.setMessage(e.getMessage());
+        response.setTimestamp(LocalDateTime.now());
+		return new ResponseEntity<ExceptionResponse>(response,HttpStatus.BAD_REQUEST);
+	}
+	//@ExceptionHandler(NoSuchElementException.class)
+	public ResponseEntity<ExceptionResponse> noelement(NoSuchElementException err){
+		ExceptionResponse response = new ExceptionResponse();
+        response.setCode("BAD_REQUEST");
+        response.setMessage(err.getMessage());
         response.setTimestamp(LocalDateTime.now());
 		return new ResponseEntity<ExceptionResponse>(response,HttpStatus.BAD_REQUEST);
 	}

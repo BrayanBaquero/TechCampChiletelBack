@@ -21,6 +21,6 @@ public interface ITecnicoRepository extends JpaRepository<Tecnico, Integer> {
 	boolean existsBynumeroIden(int identificacion);
 	
 	@Query(value = "SELECT * FROM TECNICOS T WHERE T.BORRADO = 0", nativeQuery = true)
-	 List<Tecnico> findAllTecnicosActivos();
+	 List<Tecnico> getAllTecnicosActivos();
 	
 }

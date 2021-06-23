@@ -23,11 +23,11 @@ import com.chiletel.repository.ITipoDañoRepository;
 @Service
 public class TecnicoService implements ITecnicoService{
 	@Autowired
-	private ITecnicoRepository iTecnicoRepository;
+	private ITecnicoRepository tecnicoRepo;
 	@Autowired
-	private ITipoDañoRepository ITipoDañoRepository;
+	private ITipoDañoRepository tipoDañoRepo;
 	@Autowired
-	private ICuadrillaRepository iCuadrillaRepository;
+	private ICuadrillaRepository cuadrillaRepo;
 	@Autowired
 	private MapperTecnico mapperTecnico;
 	
@@ -36,7 +36,7 @@ public class TecnicoService implements ITecnicoService{
 	
 	@Override
 	public List<TecnicoDTO> obtenerTecnicos() {
-		List<Tecnico> tecnico=iTecnicoRepository.findAllTecnicosActivos();
+		List<Tecnico> tecnico=tecnicoRepo.getAllTecnicosActivos();
 		List<TecnicoDTO> tecnicoDTO=mapperTecnico.ToDTOs(tecnico);
 		return tecnicoDTO;
 	}
@@ -49,12 +49,12 @@ public class TecnicoService implements ITecnicoService{
 		Tecnico tecnico= mapperTecnico.ToEntity(tecnicoDTO);
 		Set<TipoDaño> tdaños=new HashSet<>();
 		tecnicoDTO.getTDano().forEach(daño->{
-			tdaños.add(ITipoDañoRepository.findByNombre(daño).get());
+			tdaños.add(tipoDañoRepo.findByNombre(daño).get());
 		});
-		tecnico.setCuadrilla(iCuadrillaRepository.findByNombre(tecnicoDTO.getCuadrilla()).get());
+		tecnico.setCuadrilla(cuadrillaRepo.findByNombre(tecnicoDTO.getCuadrilla()).get());
 		tecnico.setTDaño(tdaños);
 		try {
-			iTecnicoRepository.save(tecnico);
+			tecnicoRepo.save(tecnico);
 		} catch (DataIntegrityViolationException e) {
 			throw new BadRequestException("Ya existe un tecnico con el mismo numero de identificacion");
 		}
@@ -64,39 +64,39 @@ public class TecnicoService implements ITecnicoService{
 
 	@Override
 	public void UpdateTecnico(int ident,TecnicoDTO tecnicoDTO) {
-		if(!iTecnicoRepository.existsBynumeroIden(ident))
+		if(!tecnicoRepo.existsBynumeroIden(ident))
 			throw new NotFoundException("Tecnico no existe");
 		if(tecnicoDTO.getTDano().isEmpty())
 			throw new BadRequestException("Debe haber al menos un tipo de daño asociado");
-		if(!iCuadrillaRepository.existsByNombre(tecnicoDTO.getCuadrilla()))
+		if(!cuadrillaRepo.existsByNombre(tecnicoDTO.getCuadrilla()))
 			throw new BadRequestException("Cuadrilla no existe");
 		
-		Optional<Tecnico> temp=iTecnicoRepository.findBynumeroIden(ident);
+		Optional<Tecnico> temp=tecnicoRepo.findBynumeroIden(ident);
 		//Mapeo de dto a entidad-------------------------
 		Tecnico tecnico=mapperTecnico.ToEntity(tecnicoDTO);
 		Set<TipoDaño> tdaños=new HashSet<>();
 		tecnicoDTO.getTDano().forEach(daño->{
-			tdaños.add(ITipoDañoRepository.findByNombre(daño).get());
+			tdaños.add(tipoDañoRepo.findByNombre(daño).get());
 		});
-		tecnico.setCuadrilla(iCuadrillaRepository.findByNombre(tecnicoDTO.getCuadrilla()).get());
+		tecnico.setCuadrilla(cuadrillaRepo.findByNombre(tecnicoDTO.getCuadrilla()).get());
 		tecnico.setTDaño(tdaños);
 		tecnico.setId(temp.get().getId());
 		//-----------------------------------------------
-		iTecnicoRepository.save(tecnico);
+		tecnicoRepo.save(tecnico);
 	}
 
 	@Override
 	public void DeleteTecnico(int ident) {
-		if(!iTecnicoRepository.existsBynumeroIden(ident))
+		if(!tecnicoRepo.existsBynumeroIden(ident))
 			throw new NotFoundException("Tecnico no existe");
-		Optional<Tecnico> tecnico=iTecnicoRepository.findBynumeroIden(ident);
+		Optional<Tecnico> tecnico=tecnicoRepo.findBynumeroIden(ident);
 		tecnico.get().setBorrado(1);
-		iTecnicoRepository.save(tecnico.get());
+		tecnicoRepo.save(tecnico.get());
 	}
 
 	@Override
 	public TecnicoDTO getTecnicoByIdentificacion(int ident) {
-		Optional<Tecnico> tecnico= iTecnicoRepository.findBynumeroIden(ident);
+		Optional<Tecnico> tecnico= tecnicoRepo.findBynumeroIden(ident);
 		if(!tecnico.isPresent()) {
 			throw new NotFoundException("El usuario con numero de identificacion no existe");
 		}

@@ -1,5 +1,7 @@
 package com.chiletel.dto;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import com.chiletel.entity.Zona;
@@ -11,5 +13,5 @@ import lombok.Data;
 public class CuadrillaDTO {
 	private String nombre;
 	private int miembros;
-	private Set<Zona> zona;
+	private Set<String> zona=new HashSet<>();
 }

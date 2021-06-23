@@ -8,6 +8,6 @@ import com.chiletel.dto.NuevaCuadrillaDTO;
 public interface ICuadrillaService {
 	public List<CuadrillaDTO> getAll();
 	public void add(NuevaCuadrillaDTO nuevaCuadrillaDTO);
-	public void delete(int id);
-	public void update(int id, NuevaCuadrillaDTO nuevaCuadrillaDTO);
+	public void update(String nombre, NuevaCuadrillaDTO nuevaCuadrillaDTO);
+	public void delete(String nombre);
 }

@@ -9,5 +9,5 @@ import lombok.Data;
 @Data
 public class NuevaCuadrillaDTO {
 	private String nombre;
-	private Set<Zona> zona;
+	private Set<String> zona;
 }

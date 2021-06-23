@@ -56,16 +56,16 @@ public class CuadrillaController {
 			 @ApiResponse(code=400,message = "Numero de identificación ya existente")
 	 })
 	@ApiOperation(value = "Actualizar datos de cuadrilla")
-	@PutMapping("{id}")
-	public ResponseEntity<?> update(@RequestBody NuevaCuadrillaDTO nuevaCuadrillaDTO,@PathVariable("id")int id){
-		iCuadrillaService.update(id, nuevaCuadrillaDTO);
+	@PutMapping("{nombre}")
+	public ResponseEntity<?> update(@RequestBody NuevaCuadrillaDTO nuevaCuadrillaDTO,@PathVariable("nombre")String nombre){
+		iCuadrillaService.update(nombre, nuevaCuadrillaDTO);
 		return new ResponseEntity(HttpStatus.OK);
 	}
 	
 	@ApiOperation(value = "Eliminar cuadrilla")
-	@DeleteMapping("{id}")
-	public ResponseEntity<?> update(@PathVariable("id")int id){
-		iCuadrillaService.delete(id);
+	@DeleteMapping("{nombre}")
+	public ResponseEntity<?> delete(@PathVariable("nombre")String nombre){
+		iCuadrillaService.delete(nombre);
 		return new ResponseEntity(HttpStatus.OK);
 	}
 	

@@ -11,8 +11,9 @@ import lombok.Setter;
 @Setter
 //Clase que se encarga de construir el Json de respuesta ante las excepciones.
 public class ExceptionResponse {
-	private String errorMessage;
-    private String errorCode;
+	private String message;
+    private String code;
+    private int status;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     private LocalDateTime timestamp;
 
