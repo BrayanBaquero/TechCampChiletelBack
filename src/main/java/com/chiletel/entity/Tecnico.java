@@ -51,7 +51,7 @@ public class Tecnico {
 	@ManyToOne(optional = false,fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_CUADRILLA",foreignKey = @ForeignKey(name = "FK_TECNICO_CUADRILLA_01") )
 	private Cuadrilla cuadrilla;
-	@Column(name ="BORRADO",columnDefinition = "NUMBER(1)")
+	@Column(name ="BORRADO",columnDefinition = "NUMBER(1) DEFAULT 0 NOT NULL")
 	private int borrado;
 	
 	@ManyToMany(fetch = FetchType.EAGER)

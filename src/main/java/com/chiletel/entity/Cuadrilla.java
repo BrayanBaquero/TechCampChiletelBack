@@ -34,11 +34,11 @@ public class Cuadrilla {
     @SequenceGenerator(sequenceName = "CUADRILLAS_SEQ", allocationSize = 1, name = "CUADRILLAS_SEQ")
 	@Column(name = "ID_CUADRILLA")
 	private int id;
-	@Column(name = "NOMBRE")
+	@Column(name = "NOMBRE",length = 20)
 	private String nombre;
-	@Column(name = "BORRADO" ,columnDefinition = "NUMBER(1)")
+	@Column(name = "BORRADO" ,columnDefinition = "NUMBER(1) DEFAULT 0 NOT NULL")
 	private int borrado;
-	@Transient
+	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name="ZONAS_CUADRILLAS",
 			   joinColumns = @JoinColumn(foreignKey = @ForeignKey(name = "FK_ZONAS_CUADRILLAS_01") 

@@ -7,10 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -18,7 +20,11 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "TIPOS_INCIDENCIA")
+//@Table(name = "TIPOS_INCIDENCIA")
+@Table(
+		name = "TIPOS_INCIDENCIA",
+		uniqueConstraints = { @UniqueConstraint(name = "UK_TIPOS_INCIDENCIA_01", columnNames = { "prioridad"})}
+	)
 public class TipoDaño {
 	@Id
 	@GeneratedValue( strategy  = GenerationType.SEQUENCE, generator = "TIPOS_INCIDENCIA_SEQ")
