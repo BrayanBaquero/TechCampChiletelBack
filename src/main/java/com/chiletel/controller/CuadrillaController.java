@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +27,7 @@ import io.swagger.annotations.ApiResponses;
 @Api(tags = "3: Cuadrilla",description = "Gestión de cuadrillas")
 @RestController
 @RequestMapping("/api/cuadrilla")
+@CrossOrigin
 public class CuadrillaController {
 	@Autowired
 	private ICuadrillaService iCuadrillaService;
@@ -67,6 +69,12 @@ public class CuadrillaController {
 	public ResponseEntity<?> delete(@PathVariable("nombre")String nombre){
 		iCuadrillaService.delete(nombre);
 		return new ResponseEntity(HttpStatus.OK);
+	}
+	
+	@ApiOperation(value="Lista de cuadrillas disponibles")
+	@GetMapping("/nombres")
+	public ResponseEntity<List<String>> getAllNombresCuadrillas(){
+		return new ResponseEntity(iCuadrillaService.getAllNombres(),HttpStatus.OK);
 	}
 	
 }

@@ -12,7 +12,6 @@ public class ZonasListConverter extends AbstractConverter<Set<Zona>, Set<String>
 
 	@Override
 	protected Set<String> convert(Set<Zona> source) {
-		// TODO Auto-generated method stub
 		return source
 		          .stream()
 		          .map(Zona::getNombre)

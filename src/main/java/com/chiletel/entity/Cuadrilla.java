@@ -38,7 +38,7 @@ public class Cuadrilla {
 	private String nombre;
 	@Column(name = "BORRADO" ,columnDefinition = "NUMBER(1)")
 	private int borrado;
-	@Transient
+	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name="ZONAS_CUADRILLAS",
 			   joinColumns = @JoinColumn(foreignKey = @ForeignKey(name = "FK_ZONAS_CUADRILLAS_01") 

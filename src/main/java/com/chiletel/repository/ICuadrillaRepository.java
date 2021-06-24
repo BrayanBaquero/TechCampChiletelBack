@@ -38,7 +38,11 @@ public interface ICuadrillaRepository extends JpaRepository<Cuadrilla, Integer> 
 	@Query(value = "SELECT * FROM CUADRILLAS C WHERE C.BORRADO = 0 and C.nombre = :nombre", nativeQuery = true)
 	Optional<Cuadrilla> findBynombre(@Param("nombre") String  nombre);
 	
+	//Obtener cuadrillas que no han sido eliminadas de manera logica 
 	@Query(value = "SELECT * FROM CUADRILLAS C WHERE C.BORRADO = 0", nativeQuery = true)
 	List<Cuadrilla> getAllCuadrillasActivas();
+	
+	@Query("SELECT c.nombre FROM Cuadrilla c where c.borrado=0")
+	List<String> getAllNombres();
 
 }

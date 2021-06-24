@@ -10,4 +10,5 @@ public interface ICuadrillaService {
 	public void add(NuevaCuadrillaDTO nuevaCuadrillaDTO);
 	public void update(String nombre, NuevaCuadrillaDTO nuevaCuadrillaDTO);
 	public void delete(String nombre);
+	public List<String> getAllNombres();
 }

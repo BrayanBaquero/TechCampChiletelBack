@@ -97,4 +97,11 @@ public class CuadrillaService implements ICuadrillaService{
 		//cuadrillaMapper.toEntity(nuevaCuadrillaDTO);
 	}
 
+	@Override
+	public List<String> getAllNombres() {
+
+		
+		return cuadrillaRepo.getAllNombres();
+	}
+
 }
