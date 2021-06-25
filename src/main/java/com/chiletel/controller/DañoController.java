@@ -25,7 +25,7 @@ public class DañoController {
 	@Autowired
 	private IDañoService iDañoService;
 	
-	@ApiOperation(value = "Obtiene lista de daños reportados")
+	@ApiOperation(value = "Obtiene lista de daños reportados  ")
 	@GetMapping
 	public ResponseEntity<List<DañoDTO>> getAll(){
 		return new ResponseEntity(iDañoService.getAllDaños(),HttpStatus.OK);
