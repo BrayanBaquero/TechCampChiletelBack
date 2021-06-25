@@ -78,4 +78,10 @@ public class CuadrillaController {
 		return new ResponseEntity(iCuadrillaService.getAllNombres(),HttpStatus.OK);
 	}
 	
+	@ApiOperation(value="Lista de cuadrillas disponibles")
+	@GetMapping("/nombres")
+	public ResponseEntity<List<String>> getAllNombresCuadrillas(){
+		return new ResponseEntity(iCuadrillaService.getAllNombres(),HttpStatus.OK);
+	}
+	
 }
