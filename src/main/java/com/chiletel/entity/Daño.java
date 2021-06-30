@@ -1,5 +1,4 @@
 package com.chiletel.entity;
-
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -20,7 +19,6 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -51,7 +49,7 @@ public class Daño {
 	@Column(name = "DESCRIPCION",length = 150)
 	private String descripcion;
 	@CreationTimestamp
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "FECHA_REGISTRO",nullable = false)
 	private Date fechaRegistro;
 }

@@ -29,7 +29,7 @@ public class TipoDaño {
 	@Id
 	@GeneratedValue( strategy  = GenerationType.SEQUENCE, generator = "TIPOS_INCIDENCIA_SEQ")
     @SequenceGenerator(sequenceName = "TIPOS_INCIDENCIA_SEQ", allocationSize = 1, name = "TIPOS_INCIDENCIA_SEQ")
-	@Column(name="ID_TIPOS_INCIDENCIA")
+	@Column(name="ID_TIPO_INCIDENCIA")
 	private int id;
 	@Column(name = "NOMBRE",length = 40)
 	private String nombre;

@@ -91,6 +91,7 @@ public class TecnicoService implements ITecnicoService{
 			throw new NotFoundException("Tecnico no existe");
 		Optional<Tecnico> tecnico=tecnicoRepo.findBynumeroIden(ident);
 		tecnico.get().setBorrado(1);
+		tecnico.get().setTDaño(null);
 		tecnicoRepo.save(tecnico.get());
 	}
 

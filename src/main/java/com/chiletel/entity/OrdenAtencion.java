@@ -38,6 +38,6 @@ public class OrdenAtencion {
 	private Daño daño;
 	@Column(name = "NUMERO_ORDEN",length = 100)
 	private String numOrden;
-	@Column(name = "AGENDADO",length = 1)
+	@Column(name = "AGENDADO",columnDefinition = "NUMBER(1)")
 	private int agendado;
 }

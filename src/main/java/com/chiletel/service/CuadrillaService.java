@@ -76,6 +76,7 @@ public class CuadrillaService implements ICuadrillaService{
 		if(cuadrilla.isEmpty())
 			throw new BadRequestException("La cuadrilla"+nombre+" no existe!!");
 		cuadrilla.get().setBorrado(1);
+		cuadrilla.get().setZona(null);
 		cuadrillaRepo.save(cuadrilla.get());
 	}
 

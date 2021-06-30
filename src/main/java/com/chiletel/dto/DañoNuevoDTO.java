@@ -5,9 +5,9 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Data
-public class DañoDTO {
+public class DañoNuevoDTO {
 	private int cliente;
-	private int tipoDaño;
+	private String tipoDaño;
 	private String descripcion;
 	
 

@@ -1,5 +1,11 @@
 package com.chiletel.repository;
 
-public interface IDañoRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.chiletel.entity.Daño;
+
+@Repository
+public interface IDañoRepository extends JpaRepository<Daño, Integer> {
 
 }

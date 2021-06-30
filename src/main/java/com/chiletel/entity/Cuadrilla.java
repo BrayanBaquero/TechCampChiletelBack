@@ -42,8 +42,8 @@ public class Cuadrilla {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name="ZONAS_CUADRILLAS",
 			   joinColumns = @JoinColumn(foreignKey = @ForeignKey(name = "FK_ZONAS_CUADRILLAS_01") 
-			   							,name="ID_ZONA"),
+			   							,name="ID_CUADRILLA"),
 			   inverseJoinColumns = @JoinColumn(foreignKey = @ForeignKey(name = "FK_ZONAS_CUADRILLAS_02") 
-												,name="ID_CUADRILLA"))
+												,name="ID_ZONA"))
 	private Set<Zona> zona=new HashSet<>();
 }

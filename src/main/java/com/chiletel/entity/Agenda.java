@@ -42,10 +42,12 @@ public class Agenda {
 	private OrdenAtencion ordenAtencion;
 	@Column(name = "ID_TECNICO")
 	private int tecnico;
-	@Temporal(TemporalType.DATE)
+	@Column(name = "T_ATENCION")
+	private int tAtencion;
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "H_INICIO")
 	private Date horaInicio;
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "H_FINAL")
 	private Date horaFinal;
 	@CreationTimestamp
