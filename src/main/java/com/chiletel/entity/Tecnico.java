@@ -41,7 +41,7 @@ public class Tecnico {
 	@Column(name = "APELLIDO",length = 50)
 	private String apellido;
 	@Column(name = "IDENTIFICACION",columnDefinition = "NUMBER(20)")
-	private int numeroIden;
+	private BigInteger numeroIden;
 	@Column(name = "EMAIL",length = 100)
 	private String email;
 	@Column(name = "TELEFONO",length = 20)

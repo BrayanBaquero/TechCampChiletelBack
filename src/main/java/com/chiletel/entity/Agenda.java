@@ -4,12 +4,14 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -40,8 +42,9 @@ public class Agenda {
 	@OneToOne(optional = false)
     @JoinColumn(name = "ID_ORDEN_ATENCION",foreignKey = @ForeignKey(name = "FK_AGENDAS_ORDENES_ATENCION_01"),referencedColumnName = "id_orden_atencion")
 	private OrdenAtencion ordenAtencion;
-	@Column(name = "ID_TECNICO")
-	private int tecnico;
+	@ManyToOne(optional = false,fetch = FetchType.LAZY)
+	@JoinColumn(name = "ID_TECNICO",foreignKey = @ForeignKey(name = "FK_TECNICOS_02") )
+	private Tecnico tecnico;
 	@Column(name = "T_ATENCION")
 	private int tAtencion;
 	@Temporal(TemporalType.TIMESTAMP)

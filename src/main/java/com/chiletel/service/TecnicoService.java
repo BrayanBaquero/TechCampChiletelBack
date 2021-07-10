@@ -1,5 +1,6 @@
 package com.chiletel.service;
 
+import java.math.BigInteger;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -8,6 +9,9 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
@@ -35,10 +39,10 @@ public class TecnicoService implements ITecnicoService{
 	
 	
 	@Override
-	public List<TecnicoDTO> obtenerTecnicos() {
-		List<Tecnico> tecnico=tecnicoRepo.getAllTecnicosActivos();
-		List<TecnicoDTO> tecnicoDTO=mapperTecnico.ToDTOs(tecnico);
-		return tecnicoDTO;
+	public Page<TecnicoDTO> obtenerTecnicos(Pageable pageable) {
+		Page<Tecnico> tecnico=tecnicoRepo.getAllTecnicosActivos(pageable);
+		List<TecnicoDTO> tecnicoDTO=mapperTecnico.ToDTOs(tecnico.getContent());
+		return new PageImpl<TecnicoDTO>(tecnicoDTO,pageable,tecnico.getTotalElements());
 	}
 
 	@Override
@@ -63,7 +67,7 @@ public class TecnicoService implements ITecnicoService{
 	}
 
 	@Override
-	public void UpdateTecnico(int ident,TecnicoDTO tecnicoDTO) {
+	public void UpdateTecnico(BigInteger ident,TecnicoDTO tecnicoDTO) {
 		if(!tecnicoRepo.existsBynumeroIden(ident))
 			throw new NotFoundException("Tecnico no existe");
 		if(tecnicoDTO.getTDano().isEmpty())
@@ -86,7 +90,7 @@ public class TecnicoService implements ITecnicoService{
 	}
 
 	@Override
-	public void DeleteTecnico(int ident) {
+	public void DeleteTecnico(BigInteger ident) {
 		if(!tecnicoRepo.existsBynumeroIden(ident))
 			throw new NotFoundException("Tecnico no existe");
 		Optional<Tecnico> tecnico=tecnicoRepo.findBynumeroIden(ident);
@@ -96,7 +100,7 @@ public class TecnicoService implements ITecnicoService{
 	}
 
 	@Override
-	public TecnicoDTO getTecnicoByIdentificacion(int ident) {
+	public TecnicoDTO getTecnicoByIdentificacion(BigInteger ident) {
 		Optional<Tecnico> tecnico= tecnicoRepo.findBynumeroIden(ident);
 		if(!tecnico.isPresent()) {
 			throw new NotFoundException("El usuario con numero de identificacion no existe");

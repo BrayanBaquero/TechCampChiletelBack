@@ -28,7 +28,7 @@ public class DañoMapper {
 		if(daño!=null) {
 			mapper.typeMap(Daño.class,DañoVerReporteDTO.class)
 			.addMapping(x -> x.getCliente().getNumeroIden(), DañoVerReporteDTO::setNumeroIden)
-			.addMapping(x -> x.getTipoDaño().getNombre(), DañoVerReporteDTO::setTipoDaño);
+			.addMapping(x -> x.getTipoDaño().getNombre(), DañoVerReporteDTO::setTipoDano);
 			dañoVerReporteDTO=mapper.map(daño, DañoVerReporteDTO.class);
 		}
 		return dañoVerReporteDTO;

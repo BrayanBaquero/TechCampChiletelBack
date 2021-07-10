@@ -1,5 +1,6 @@
 package com.chiletel.entity;
 
+import java.math.BigInteger;
 import java.util.Set;
 
 import javax.annotation.Generated;
@@ -36,7 +37,7 @@ public class Cliente {
 	@Column(name="APELLIDO",length = 50)
 	private String apellido;
 	@Column(name = "IDENTIFICACION",columnDefinition = "NUMBER(20)")
-	private int numeroIden;
+	private BigInteger numeroIden;
 	@ManyToOne(optional = false,fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_TIPO_CLIENTE",foreignKey = @ForeignKey(name = "FK_CLIENTE_TIPO_CLIENTE_01") )
 	private TipoCliente tipoCliente;

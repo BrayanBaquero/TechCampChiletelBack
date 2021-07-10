@@ -1,10 +1,14 @@
 package com.chiletel.service;
 
+
 import java.security.SecureRandom;
 import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.chiletel.dto.DañoNuevoDTO;
@@ -46,7 +50,6 @@ public class DañoService implements IDañoService {
 				.orElseThrow(()->new NotFoundException("El cliente no existe"));
 		TipoDaño tipoDaño=tipoDañoRepo.findByNombre(dañoDTO.getTipoDaño())
 				.orElseThrow(()->new NotFoundException("El tipo de daño a reportar no existe."));
-		
 		Daño daño=dañoMapper.toEntity(dañoDTO);
 		daño.setCliente(cliente);
 		daño.setTipoDaño(tipoDaño);
@@ -56,6 +59,13 @@ public class DañoService implements IDañoService {
 		ordenAtencion.setNumOrden(UUID.randomUUID().toString());
 		ordenAtencionRepo.save(ordenAtencion);
 		
+	}
+
+	@Override
+	public Page<DañoVerReporteDTO> getPagenDaños(Pageable pageable) {
+		Page<Daño> dañoVRPage=dañoRepo.findAll(pageable);
+		List<DañoVerReporteDTO> dañoVRDto=dañoMapper.toDtoDañoVerReportes(dañoVRPage.getContent());
+		return new PageImpl<DañoVerReporteDTO>(dañoVRDto,pageable,dañoVRPage.getTotalElements());
 	}
 	
 	

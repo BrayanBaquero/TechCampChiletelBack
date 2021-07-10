@@ -3,13 +3,19 @@ package com.chiletel.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.chiletel.dto.DañoNuevoDTO;
@@ -30,7 +36,7 @@ public class DañoController {
 	private IDañoService iDañoService;
 	
 	@ApiOperation(value = "Obtiene lista de daños reportados  ")
-	@GetMapping
+	@GetMapping("/page")
 	public ResponseEntity<List<DañoVerReporteDTO>> getAll(){
 		return new ResponseEntity<List<DañoVerReporteDTO>>(iDañoService.getAllDaños(),HttpStatus.OK);
 	}
@@ -40,5 +46,13 @@ public class DañoController {
 	public ResponseEntity<?> add(@RequestBody DañoNuevoDTO dañoDTO){
 		iDañoService.addDaño(dañoDTO);
 		return new ResponseEntity<>(new MessageOk("Se ha registrado el daño."),HttpStatus.CREATED);
+	}
+	
+	@GetMapping
+	public ResponseEntity<Page<DañoVerReporteDTO>> getPage(
+			@RequestParam(defaultValue = "0") int page,
+			@RequestParam(defaultValue = "10")int size){
+		Pageable pageable=PageRequest.of(page, size,Sort.by("fechaRegistro").descending());
+		return new ResponseEntity<Page<DañoVerReporteDTO>>(iDañoService.getPagenDaños(pageable),HttpStatus.OK);
 	}
 }

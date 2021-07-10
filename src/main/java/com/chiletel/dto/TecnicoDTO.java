@@ -1,5 +1,6 @@
 package com.chiletel.dto;
 
+import java.math.BigInteger;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,7 +23,7 @@ public class TecnicoDTO {
 	
 	private String nombre;
 	private String apellido;
-	private int numeroIden;
+	private BigInteger numeroIden;
 	@Email(message = "Formato de correo electronico no valido")
 	private String email;
 	private String telefono;

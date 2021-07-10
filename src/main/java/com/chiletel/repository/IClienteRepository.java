@@ -1,5 +1,6 @@
 package com.chiletel.repository;
 
+import java.math.BigInteger;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,5 +11,5 @@ import com.chiletel.entity.Cliente;
 @Repository
 public interface IClienteRepository extends JpaRepository<Cliente, Integer>{
 	
-	Optional<Cliente> findByNumeroIden(int numeroIden);
+	Optional<Cliente> findByNumeroIden(BigInteger numeroIden);
 }

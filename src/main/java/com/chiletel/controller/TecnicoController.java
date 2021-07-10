@@ -1,5 +1,6 @@
 package com.chiletel.controller;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -7,6 +8,10 @@ import javax.validation.Valid;
 import org.hibernate.validator.internal.IgnoreForbiddenApisErrors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -19,6 +24,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.chiletel.dto.TecnicoDTO;
@@ -41,8 +47,11 @@ public class TecnicoController {
 	
 	@ApiOperation(value = "Obtene lista de tecnicos registrados")
 	@GetMapping
-	public ResponseEntity<List<TecnicoDTO>> getAll(){
-		return ResponseEntity.status(HttpStatus.OK).body(iTecnicoService.obtenerTecnicos());
+	public ResponseEntity<Page<TecnicoDTO>> getAll(
+			@RequestParam(defaultValue = "0") int page,
+			@RequestParam(defaultValue = "10")int size){
+		Pageable pageable=PageRequest.of(page, size);
+		return new ResponseEntity<Page<TecnicoDTO>>(iTecnicoService.obtenerTecnicos(pageable),HttpStatus.OK);
 	}
 	
 	@ApiResponses(value = {
@@ -64,7 +73,7 @@ public class TecnicoController {
 	 })
 	@ApiOperation(value = "Se actualizan los datos personales de un técnico")
 	@PutMapping("{identificacion}")
-	public ResponseEntity<?> update(@Valid @PathVariable("identificacion")int iden, @RequestBody TecnicoDTO tecnicoDTO, BindingResult bResult){
+	public ResponseEntity<?> update(@Valid @PathVariable("identificacion")BigInteger iden, @RequestBody TecnicoDTO tecnicoDTO, BindingResult bResult){
 		if(bResult.hasErrors())
 			throw new BadRequestException("Error en validacion de campos");
 		iTecnicoService.UpdateTecnico(iden,tecnicoDTO);
@@ -73,7 +82,7 @@ public class TecnicoController {
 	
 	@ApiOperation(value = "Se borra un técnico registrado en la empresa")
 	@DeleteMapping("{identificacion}")
-	public ResponseEntity<?> delete(@PathVariable("identificacion")int identificacion){
+	public ResponseEntity<?> delete(@PathVariable("identificacion")BigInteger identificacion){
 		iTecnicoService.DeleteTecnico(identificacion);
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
@@ -83,7 +92,7 @@ public class TecnicoController {
 	
 	@ApiOperation(value = "Se obtienen los datos de un técnico por su identificacion")
 	@GetMapping("{identificacion}")
-	public ResponseEntity<TecnicoDTO> getById(@PathVariable("identificacion") int idenfificacion){
+	public ResponseEntity<TecnicoDTO> getById(@PathVariable("identificacion") BigInteger idenfificacion){
 		TecnicoDTO tecnicoDTO=iTecnicoService.getTecnicoByIdentificacion(idenfificacion);
 		return new ResponseEntity<TecnicoDTO>(tecnicoDTO,HttpStatus.OK);
 	}
