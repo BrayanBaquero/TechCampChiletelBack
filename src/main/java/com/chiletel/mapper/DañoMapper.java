@@ -10,10 +10,15 @@ import org.springframework.stereotype.Component;
 
 import com.chiletel.dto.DañoNuevoDTO;
 import com.chiletel.dto.DañoVerReporteDTO;
-import com.chiletel.dto.TecnicoDTO;
 import com.chiletel.entity.Daño;
-import com.chiletel.entity.Tecnico;
 
+/**
+ * <h2>Descripción:</h2>
+ * Clase encarga de realizar mapeo de datos entre la entidad {@link Daño} y el dto {@link DañoVerReporteDTO} <br>
+ * y {@link DañoNuevoDTO}
+ * usando la libreria {@link ModelMapper}
+ * @author Brayan Baquero
+ */
 @Component("dañoMapper")
 @Configuration
 public class DañoMapper {
@@ -21,8 +26,12 @@ public class DañoMapper {
 	@Autowired
 	private ModelMapper mapper;
 	
-	
-	//Mapero de entidad a DañoVerReporteDTO 
+	/**
+	 * <h2>Descripción:</h2>
+	 *  Metodo encargado de mapear {@link Daño} a {@link DañoVerReporteDTO}
+	 * @param daño
+	 * @return {@link DañoVerReporteDTO}
+	 */
 	public DañoVerReporteDTO toDtoDañoVerReporte(Daño daño) {
 		DañoVerReporteDTO dañoVerReporteDTO=null;
 		if(daño!=null) {
@@ -33,13 +42,23 @@ public class DañoMapper {
 		}
 		return dañoVerReporteDTO;
 	}
+	/**
+	 * <h2>Descripción:</h2>
+	 *  Metodo encargado de mapear List<{@link Daño}> a List<{@link DañoVerReporteDTO}>
+	 * @param List<Daño>
+	 * @return List<{@link DañoVerReporteDTO}>
+	 */
 	//Mapero de lista entidades a DañoVerReporteDTO 
 	public List<DañoVerReporteDTO> toDtoDañoVerReportes(List<Daño> daños){
-		return daños.stream()
-				  .map(Daño->toDtoDañoVerReporte(Daño))
-				  .collect(Collectors.toList());
+		return daños.stream().map(Daño->toDtoDañoVerReporte(Daño)).collect(Collectors.toList());
 	}
 	
+	/**
+	 * <h2>Descripción:</h2>
+	 *  Metodo encargado de mapear {@link DañoNuevoDTO} a {@link Daño}
+	 * @param DañoNuevoDTO
+	 * @return {@link Daño}
+	 */
 	public Daño toEntity(DañoNuevoDTO dañoNuevoDTO) {
 		Daño daño=null;
 		if(dañoNuevoDTO!=null) {
@@ -47,7 +66,5 @@ public class DañoMapper {
 		}
 		return daño;
 	}
-	
-	
 	
 }

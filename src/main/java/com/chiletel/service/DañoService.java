@@ -1,9 +1,8 @@
 package com.chiletel.service;
 
-
-import java.security.SecureRandom;
 import java.util.List;
-import java.util.UUID;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,6 +23,11 @@ import com.chiletel.repository.IDañoRepository;
 import com.chiletel.repository.IOrdenAtencionRepository;
 import com.chiletel.repository.ITipoDañoRepository;
 
+/**
+ * <h2>Descrcipción:</h2>
+ * Clase encargada de implementar los metodos definidos en {@link IDañoService}
+ * @author Brayan Baquero
+ */
 @Service
 public class DañoService implements IDañoService {
 	
@@ -38,12 +42,7 @@ public class DañoService implements IDañoService {
 	@Autowired 
 	private DañoMapper dañoMapper;
 
-	@Override
-	public List<DañoVerReporteDTO> getAllDaños() {
-		List<Daño> dañoVerReporteDTOs=dañoRepo.findAll();
-		return dañoMapper.toDtoDañoVerReportes(dañoVerReporteDTOs);
-	}
-
+	@Transactional
 	@Override
 	public void addDaño(DañoNuevoDTO dañoDTO) {
 		Cliente cliente=clienteRepo.findByNumeroIden(dañoDTO.getCliente())
@@ -53,20 +52,16 @@ public class DañoService implements IDañoService {
 		Daño daño=dañoMapper.toEntity(dañoDTO);
 		daño.setCliente(cliente);
 		daño.setTipoDaño(tipoDaño);
-		//int idDaño=dañoRepo.save(daño).getId();
 		OrdenAtencion ordenAtencion=new OrdenAtencion();
 		ordenAtencion.setDaño(dañoRepo.save(daño));
-		ordenAtencion.setNumOrden(UUID.randomUUID().toString());
-		ordenAtencionRepo.save(ordenAtencion);
-		
+		//ordenAtencion.setNumOrden(UUID.randomUUID().toString());
+		ordenAtencionRepo.save(ordenAtencion);	
 	}
 
 	@Override
-	public Page<DañoVerReporteDTO> getPagenDaños(Pageable pageable) {
+	public Page<DañoVerReporteDTO> getDaños(Pageable pageable) {
 		Page<Daño> dañoVRPage=dañoRepo.findAll(pageable);
 		List<DañoVerReporteDTO> dañoVRDto=dañoMapper.toDtoDañoVerReportes(dañoVRPage.getContent());
 		return new PageImpl<DañoVerReporteDTO>(dañoVRDto,pageable,dañoVRPage.getTotalElements());
 	}
-	
-	
 }

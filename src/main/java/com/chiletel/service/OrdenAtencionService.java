@@ -12,7 +12,11 @@ import com.chiletel.dto.OrdenAtencionDTO;
 import com.chiletel.entity.OrdenAtencion;
 import com.chiletel.mapper.OrdenAtencionMapper;
 import com.chiletel.repository.IOrdenAtencionRepository;
-
+/**
+ * <h2>Descripción:</h2>
+ * Clase que se encarga de implementar los metodos definidos en {@link IOrdenAtencionService}.
+ * @author Brayan Baquero
+ */
 @Service
 public class OrdenAtencionService implements IOrdenAtencionService {
 	

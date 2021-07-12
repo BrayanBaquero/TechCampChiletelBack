@@ -1,6 +1,5 @@
 package com.chiletel.entity;
 
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,12 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import lombok.Data;
 
@@ -36,8 +32,8 @@ public class OrdenAtencion {
 	@OneToOne(fetch = FetchType.LAZY,optional = false)
 	@JoinColumn(name = "ID_INCIDENCIA",foreignKey = @ForeignKey(name = "FK_ORDENES_ATENCION_INCIDENCIAS_01") )
 	private Daño daño;
-	@Column(name = "NUMERO_ORDEN",length = 100)
-	private String numOrden;
-	@Column(name = "AGENDADO",columnDefinition = "NUMBER(1)")
+	//@Column(name = "NUMERO_ORDEN",length = 100)
+	//private String numOrden;
+	@Column(name = "AGENDADO",columnDefinition = "NUMBER(1) DEFAULT 0",nullable = false)
 	private int agendado;
 }

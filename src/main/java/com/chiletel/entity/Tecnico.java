@@ -1,6 +1,6 @@
 package com.chiletel.entity;
 
-import java.math.BigInteger;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -40,15 +40,16 @@ public class Tecnico {
 	private String nombre;
 	@Column(name = "APELLIDO",length = 50)
 	private String apellido;
-	@Column(name = "IDENTIFICACION",columnDefinition = "NUMBER(20)")
-	private BigInteger numeroIden;
+	//@Column(name = "IDENTIFICACION",columnDefinition = "NUMBER(20)")
+	@Column(name = "IDENTIFICACION")
+	private Long numeroIden;
 	@Column(name = "EMAIL",length = 100)
 	private String email;
 	@Column(name = "TELEFONO",length = 20)
 	private String telefono;
 	@Column(name = "DIRECCION",length = 40)
 	private String direccion;
-	@ManyToOne(optional = false,fetch = FetchType.LAZY)
+	@ManyToOne(optional = true,fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_CUADRILLA",foreignKey = @ForeignKey(name = "FK_TECNICO_CUADRILLA_01") )
 	private Cuadrilla cuadrilla;
 	@Column(name ="BORRADO",columnDefinition = "NUMBER(1) DEFAULT 0 NOT NULL")

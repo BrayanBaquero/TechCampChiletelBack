@@ -1,13 +1,14 @@
 package com.chiletel.dto;
 
-import java.math.BigInteger;
-
-import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
  @Data
+ @NoArgsConstructor
+ @AllArgsConstructor
 public class OrdenAtencionDTO {
-	private String numOrden;
-	private BigInteger cliente;
+	private int numOrden;
+	private long cliente;
 	private String incidencia;
 }

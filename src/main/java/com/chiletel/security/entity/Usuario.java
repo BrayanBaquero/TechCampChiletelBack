@@ -44,13 +44,13 @@ public class Usuario {
 	@Column(name = "NOMBRE",length = 20)
 	private String nombre;
 	@NotNull
-	@Column(name = "NOMBRE_USUARIO")
+	@Column(name = "NOMBRE_USUARIO",length = 20)
 	private String nombreUsuario;
 	@NotNull
 	@Column(name = "EMAIL",length = 100)
 	private String email;
 	@NotNull
-	@Column(name = "PASSWORD",length = 50)
+	@Column(name = "PASSWORD",length = 100)
 	private String password;
 	@NotNull
 	@ManyToMany(fetch = FetchType.EAGER)

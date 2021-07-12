@@ -1,7 +1,9 @@
 package com.chiletel.exceptionHandler;
-
-
-//Clase encargada de personalizar mensaje de NotFoundException, manejada por ExceptionConfig
+ /**
+  * <2>Descripción:</h2>
+  * Clase encargada de personalizar mensaje de NotFoundException, manejada por {@link ExceptionConfig}
+  * @author Brayan Baquero
+  */
 public class NotFoundException extends RuntimeException {
 	
 	public NotFoundException() {}

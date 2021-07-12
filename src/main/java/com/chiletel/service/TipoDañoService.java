@@ -1,12 +1,9 @@
 package com.chiletel.service;
 
 import java.util.List;
-import java.util.Optional;
 
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +14,11 @@ import com.chiletel.exceptionHandler.NotFoundException;
 import com.chiletel.mapper.TipoDañoMapper;
 import com.chiletel.repository.ITipoDañoRepository;
 
+/**
+ * <h2>Descrcipción:</h2>
+ * Clase encargada de implementar los metodos definidos en {@link ITipoDañoService}
+ * @author Brayan Baquero
+ */
 @Service
 @Transactional
 public class TipoDañoService implements ITipoDañoService{
@@ -29,8 +31,7 @@ public class TipoDañoService implements ITipoDañoService{
 	public List<TipoDañoDTO> getAllTipoDaño() {
 		List<TipoDaño> tipoDaños=tipoDañoRepo.findAll();
 		if(tipoDaños.isEmpty())
-			throw new NotFoundException("No hay ningun tipo de daño!!");
-		
+			throw new NotFoundException("No hay ningun tipo de daño.");
 		return tipoDañoMapper.toDtos(tipoDaños);
 	}
 
@@ -44,8 +45,8 @@ public class TipoDañoService implements ITipoDañoService{
 				 * y lanza una excepcion lo cual, tras lo cual gracias al @transactional definido en la clase
 				 *  se hace rollback para no persistir lo registros ya actualizados
 				*/
-				if(actualizado!=1) {
-					throw new BadRequestException("Error al actualizar los datos");
+				if(actualizado!=1 || tDaño.getPrioridad()<1 || tDaño.getTiempo()<1) {
+					throw new BadRequestException("Error al actualizar los datos.");
 				}
 			});
 			
