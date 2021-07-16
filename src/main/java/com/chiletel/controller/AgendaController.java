@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.chiletel.dto.AgendaEventosDTO;
-import com.chiletel.dto.AgendaEventosDTOO;
 import com.chiletel.dto.AgendaTecnicosDTO;
 import com.chiletel.service.IAgendaService;
 import com.chiletel.utils.MessageOk;
@@ -52,18 +51,18 @@ public class AgendaController {
 	
 	@ApiOperation(value = "Generar agenda del equipo tecnico")
 	@PostMapping
-	public ResponseEntity<?> genAgenda(@RequestBody String msg){
+	public ResponseEntity<MessageOk> genAgenda(@RequestBody(required = false) Boolean msg){
 		int code=iAgendaService.genAgenda();
-		return new ResponseEntity<>(new MessageOk(""+code) ,HttpStatus.OK);
+		return new ResponseEntity<MessageOk>(new MessageOk(""+code) ,HttpStatus.OK);
 	}
 	
 	@ApiOperation(value = "Obtener agenda de trabajo de equipo técnico.")
 	@GetMapping("/{ident}/tecnico")
-	public ResponseEntity<List<AgendaEventosDTOO>> getAgendaTecnico(
+	public ResponseEntity<List<AgendaEventosDTO>> getAgendaTecnico(
 			@PathVariable("ident")Long iden,
 			@RequestParam(required = true) @DateTimeFormat(pattern = "dd-MM-yyyy")  Date fechaInicio,
 			@RequestParam(required = true) @DateTimeFormat(pattern = "dd-MM-yyyy")  Date fechaFinal
 			){
-		return new ResponseEntity<List<AgendaEventosDTOO>>(iAgendaService.getAgendaTecnico(iden,fechaInicio,fechaFinal),HttpStatus.OK);
+		return new ResponseEntity<List<AgendaEventosDTO>>(iAgendaService.getAgendaTecnico(iden,fechaInicio,fechaFinal),HttpStatus.OK);
 	}
 }

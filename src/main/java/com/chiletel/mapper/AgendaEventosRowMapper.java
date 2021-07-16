@@ -5,20 +5,20 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.chiletel.dao.AgendaSpDao;
-import com.chiletel.dto.AgendaEventosDTOO;
+import com.chiletel.dao.AgendaDao;
+import com.chiletel.dto.AgendaEventosDTO;
 
 /**
  * <h2>Descripción:</h2>
- * Clase encargada de mapear el query realizado en {@link AgendaSpDao} al dto correspondiente.
+ * Clase encargada de mapear el query realizado en {@link AgendaDao} al dto correspondiente.
  * @author Brayan Baquero
  *
  */
-public class AgendaEventosRowMapper implements RowMapper<AgendaEventosDTOO> {
+public class AgendaEventosRowMapper implements RowMapper<AgendaEventosDTO> {
 
 	@Override
-	public AgendaEventosDTOO mapRow(ResultSet rs, int rowNum) throws SQLException {
-		AgendaEventosDTOO agendaEventosDTOO= new AgendaEventosDTOO();
+	public AgendaEventosDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+		AgendaEventosDTO agendaEventosDTOO= new AgendaEventosDTO();
 		agendaEventosDTOO.setNombreCliente(rs.getString("nombreCliente"));
 		agendaEventosDTOO.setOrd_Id(rs.getInt("ord_id"));
 		agendaEventosDTOO.setInicio(rs.getString("Inicio"));

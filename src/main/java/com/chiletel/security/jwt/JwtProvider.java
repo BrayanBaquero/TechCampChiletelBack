@@ -17,6 +17,11 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
 
+/**
+ * <h2>Descripción:</h2>
+ * Clase que se encarga de generar el token, validar que esta bien formado y no ha expirado.
+ * @author Brayan Baquero
+ */
 //Se encarga de generar el token, valida que esta bien formado y no ha expirado
 
 @Component

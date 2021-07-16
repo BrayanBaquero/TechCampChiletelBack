@@ -12,7 +12,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import com.chiletel.dto.AgendaEventosDTOO;
+import com.chiletel.dto.AgendaEventosDTO;
 import com.chiletel.exceptionHandler.BadRequestException;
 import com.chiletel.mapper.AgendaEventosRowMapper;
 
@@ -20,16 +20,28 @@ import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
-
+/**
+ * <h2>Descripción:</h2>
+ * Clase encargada de interactuar con la DB mediante jbc obteniendo datos relacionados <br>
+ * con la agenda de trabajo de los ténicos.
+ * @author Brayan Baquero
+ *
+ */
 
 @Repository
 @Transactional
-public class AgendaSpDao {
+public class AgendaDao implements IAgendaDao{
 	@Autowired
     private JdbcTemplate jdbcTemplate;
 	
+	private static final String nombrePaquete="pkg_agendamiento_ordenes";
+	private static final String spOrquestador="sp_main";
+	
+	@Override
 	public int agendarOrdenes() {
-		SimpleJdbcCall simpleJdbcCall=new SimpleJdbcCall(jdbcTemplate).withProcedureName("PA_AGENDAR_ORDENES");
+		SimpleJdbcCall simpleJdbcCall=new SimpleJdbcCall(jdbcTemplate)
+				.withCatalogName(nombrePaquete)
+				.withProcedureName(spOrquestador);
 		SqlParameterSource in = new MapSqlParameterSource();
 		try {
 			Map<String, Object> out=simpleJdbcCall.execute(in);
@@ -37,15 +49,16 @@ public class AgendaSpDao {
 				return ((BigDecimal)out.get("ESTADO")).intValueExact();
 			}
 		} catch (Exception e) {
-			System.err.println(e.getMessage());
+			//System.err.println(e.getMessage());
 			throw new BadRequestException(e.getMessage());
 		}
 		
 		return 0;
 	}
 	
-	public List<AgendaEventosDTOO> getAllAgendaEventos(Long ident ,Date inicio,Date final_) {
-		//String sql = "SELECT articleId, title, category FROM articles";
+	@Override
+	public List<AgendaEventosDTO> getAllAgendaEventos(Long ident ,Date inicio,Date final_) {
+		
 		String sql= "select  coalesce(ag.id_orden_atencion,0) as ord_id,ag.h_inicio as inicio,ag.h_final as final,cl.nombre as nombreCliente,cl.apellido as apellidoCliente,cl.identificacion,cl.direccion as Direccion,ti.nombre as tipoIncidencia from tecnicos tc \r\n"
 				+ "    inner join agendas ag on (tc.id_tecnico=ag.id_tecnico)\r\n"
 				+ "			and ag.fecha>=? \r\n"
@@ -61,7 +74,7 @@ public class AgendaSpDao {
 				.addValue("inicio",inicio)
 				.addValue("final", final_)
 				.addValue("ident", ident);
-		RowMapper<AgendaEventosDTOO> rowMapper = new AgendaEventosRowMapper();
+		RowMapper<AgendaEventosDTO> rowMapper = new AgendaEventosRowMapper();
 		return this.jdbcTemplate.query(sql,new Object[] { inicio, final_,ident }, rowMapper);
 	}
 	

@@ -1,37 +1,25 @@
 package com.chiletel.security.entity;
 
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.stream.Collectors;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.sun.istack.NotNull;
-
 import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 
+/**
+ * <h2>Descripción:</h2>
+ * Clase encargada de los privilegios de usuario
+ * @author Brayan Baquero
+ */
 @Getter
 @AllArgsConstructor
-
-//Encargada de privilegios de usuario
 public class UsuarioPrincipal implements UserDetails {
 	private String nombre;
 	@Getter(value = AccessLevel.NONE)

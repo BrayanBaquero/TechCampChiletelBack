@@ -11,18 +11,23 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
-
-//Se encarga de verificar si el token es valido , si no retornada respuesta 401 no autorizado
+/**
+ * <h2>Descripción:</h2>
+ * clase que se  encarga de verificar si el token es valido , si no retornada respuesta 401 no autorizado.
+ * @author Brayan Baquero
+ *
+ */
+//
 @Component
 public class JwtEntryPoint implements AuthenticationEntryPoint{
 	
-	private final static Logger logger=LoggerFactory.getLogger(JwtEntryPoint.class);
+	//private final static Logger logger=LoggerFactory.getLogger(JwtEntryPoint.class);
 	//Rechaza todas la peticiones que no esten autenticadas
 	@Override
 	public void commence(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException authException) throws IOException, ServletException {
-		logger.error("Error: "+authException.getMessage());
-		logger.error("Error: "+authException.getCause());
+		//logger.error("Error: "+authException.getMessage());
+		//logger.error("Error: "+authException.getCause());
 		response.sendError(HttpServletResponse.SC_UNAUTHORIZED,"No Autorizado");
 		
 	}

@@ -19,11 +19,17 @@ import javax.persistence.Table;
 
 import com.sun.istack.NotNull;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
+/**
+ * <h2>Descripción:</h2>
+ * Entidad encargada almacenar en db los datos relacionados con los usuarios.
+ * @author Brayan Baquero
+ *
+ */
 @NoArgsConstructor
 @Getter
 @Setter

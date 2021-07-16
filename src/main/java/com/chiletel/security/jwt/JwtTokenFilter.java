@@ -17,7 +17,8 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.chiletel.security.service.UserDetailsServiceImpl;
 
-/*
+/**
+ * <h2>Descripción:</h2>
  * Se ejecuta por cada peticion, comprueba si es valido el token usando el JWtProvider
  * en caso de que sea valido el token permitira el acceso al recurso, en caso contrario
  * lanzara una exepcion.
@@ -55,8 +56,6 @@ public class JwtTokenFilter extends OncePerRequestFilter{
 	//Extraer el token Eliminar bearer
 	private String getToken(HttpServletRequest request) {
 		String header=request.getHeader("authorization");
-		
-		System.out.println(header);
 		if(header!=null && header.startsWith("Bearer")) {
 			return header.replace("Bearer ", "");
 		}else {

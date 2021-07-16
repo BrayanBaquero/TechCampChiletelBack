@@ -20,6 +20,12 @@ import com.chiletel.security.jwt.JwtEntryPoint;
 import com.chiletel.security.jwt.JwtTokenFilter;
 import com.chiletel.security.service.UserDetailsServiceImpl;
 
+/**
+ * <h2>Descripción:<h2>
+ * Se definen configuraciones generales para la seguridad de la api.
+ * @author Brayan Baquero
+ *
+ */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)//Indicar a que metodos solo va acceder el administrador
@@ -54,7 +60,9 @@ public class MainSecurity extends WebSecurityConfigurerAdapter{
 	}
 	
 
-
+	/**
+	 * Definir la seguridad de los endpoint de la api.
+	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
