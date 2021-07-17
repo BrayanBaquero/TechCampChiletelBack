@@ -120,7 +120,7 @@ public class ExceptionConfig {
 	
 	/**
 	 * <h2>Descripción:</h2>
-	 * Manejo de excepción cuando se detectan fallos en de formato en alguna<br>
+	 * Manejo de excepción cuando se detectan fallos  de formato en alguna<br>
 	 * de las peticiones get,post,put,delete.
 	 * @param e
 	 * @return {@link ExceptionResponse}
@@ -135,5 +135,7 @@ public class ExceptionConfig {
 		return new ResponseEntity<ExceptionResponse>(response,HttpStatus.BAD_REQUEST);
 		
 	}
+	
+	
 	
 }

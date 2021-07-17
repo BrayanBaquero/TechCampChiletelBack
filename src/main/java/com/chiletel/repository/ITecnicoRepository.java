@@ -32,7 +32,7 @@ public interface ITecnicoRepository extends JpaRepository<Tecnico, Integer> {
 	 * @param 
 	 * @return Opcional<{@link Tecnico}>
 	 */
-	@Query(value = "SELECT * FROM TECNICOS T WHERE T.BORRADO = 0 and T.IDENTIFICACION = :identificacion", nativeQuery = true)
+	@Query(value = "SELECT /*+ index(T, IDX_TECNICOS_01)*/ * FROM TECNICOS T WHERE T.BORRADO = 0 and T.IDENTIFICACION = :identificacion", nativeQuery = true)
 	Optional<Tecnico> findBynumeroIden(@Param("identificacion")Long  identificacion);
 	
 	/**

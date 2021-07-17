@@ -61,7 +61,7 @@ public class CuadrillaService implements ICuadrillaService{
 	@Override
 	public void addCuadrilla(NuevaCuadrillaDTO nuevaCuadrillaDTO) {
 		if(cuadrillaRepo.findBynombre(nuevaCuadrillaDTO.getNombre()).isPresent())
-			throw new BadRequestException("El nombre no esta disponible, selcciones otro!!");
+			throw new BadRequestException("El nombre no esta disponible, seleccione otro.");
 		Cuadrilla cuadrilla=new Cuadrilla();
 		//Obtener set de zonas validando si existen en DB
 		Set<Zona> zonas=nuevaCuadrillaDTO.getZona().stream()

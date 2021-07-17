@@ -29,7 +29,7 @@ import lombok.NoArgsConstructor;
 //@Table(name = "INCIDENCIAS")
 @Table(
 		name = "INCIDENCIAS",
-		indexes = @Index(name="IDX_INCIDENCIAS_01",columnList = "FECHA_REGISTRO",unique=true)
+		indexes = @Index(name="IDX_INCIDENCIAS_01",columnList = "FECHA_REGISTRO",unique=false)
 	)
 public class Daño {
 	@Id

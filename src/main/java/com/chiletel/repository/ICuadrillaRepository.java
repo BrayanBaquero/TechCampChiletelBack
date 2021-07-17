@@ -38,7 +38,7 @@ public interface ICuadrillaRepository extends JpaRepository<Cuadrilla, Integer> 
 	 * el resultado se mapea en la interfaz de proyeccion {@link CuadrillasTecnicos} .
 	 * @return List<{@link CuadrillasTecnicos}>
 	 */
-	@Query(value = "select c.nombre,c.id_cuadrilla as id, count(tc.id_cuadrilla) as miembros from cuadrillas c \r\n"
+	@Query(value = "select /*+ index(c, cuadrillas_pk)*/ c.nombre,c.id_cuadrilla as id, count(tc.id_cuadrilla) as miembros from cuadrillas c \r\n"
 			+ "left join tecnicos tc \r\n"
 			+ "    on tc.id_cuadrilla=c.id_cuadrilla\r\n"
 			+ "where tc.borrado=0\r\n"
@@ -59,7 +59,8 @@ public interface ICuadrillaRepository extends JpaRepository<Cuadrilla, Integer> 
 	 * @param nombre
 	 * @return Opcional<{@link Cuadrilla}>
 	 */
-	@Query(value = "SELECT * FROM CUADRILLAS C WHERE C.BORRADO = 0 and C.nombre = :nombre", nativeQuery = true)
+	//@Query(value = "SELECT * FROM CUADRILLAS C WHERE C.BORRADO = 0 and C.nombre = :nombre", nativeQuery = true)
+	@Query(value = "SELECT c FROM Cuadrilla c WHERE c.borrado = 0 and c.nombre = :nombre")
 	Optional<Cuadrilla> findBynombre(@Param("nombre") String  nombre);
 	
 	/**

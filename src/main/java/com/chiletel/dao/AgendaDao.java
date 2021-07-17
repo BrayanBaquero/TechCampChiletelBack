@@ -59,7 +59,7 @@ public class AgendaDao implements IAgendaDao{
 	@Override
 	public List<AgendaEventosDTO> getAllAgendaEventos(Long ident ,Date inicio,Date final_) {
 		
-		String sql= "select  coalesce(ag.id_orden_atencion,0) as ord_id,ag.h_inicio as inicio,ag.h_final as final,cl.nombre as nombreCliente,cl.apellido as apellidoCliente,cl.identificacion,cl.direccion as Direccion,ti.nombre as tipoIncidencia from tecnicos tc \r\n"
+		String sql= "select  /*+ use_hash(tc ag ord i  cl ti) index(tc,idx_tecnicos_01)*/ coalesce(ag.id_orden_atencion,0) as ord_id,ag.h_inicio as inicio,ag.h_final as final,cl.nombre as nombreCliente,cl.apellido as apellidoCliente,cl.identificacion,cl.direccion as Direccion,ti.nombre as tipoIncidencia from tecnicos tc \r\n"
 				+ "    inner join agendas ag on (tc.id_tecnico=ag.id_tecnico)\r\n"
 				+ "			and ag.fecha>=? \r\n"
 				+ "         and ag.fecha<=? and tc.borrado=0\r\n"
