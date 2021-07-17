@@ -39,7 +39,7 @@ public class AgendaController {
 
 	
 	
-	@ApiOperation(value = "Obtener agenda de trabajo de equipo técnico.")
+	@ApiOperation(value = "Obtener lista de técnicos")
 	@GetMapping
 	public ResponseEntity<Page<AgendaTecnicosDTO>> gettAll(
 			@RequestParam(defaultValue = "0") int page,

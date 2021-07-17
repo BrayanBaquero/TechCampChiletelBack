@@ -51,7 +51,7 @@ public class TecnicoDTO {
 	private String telefono;
 	
 	@NotEmpty(message = "Campo no puede estar vacio")
-	@Size(min = 3,max = 50,message = "Debe tener mas de 3 caracteres y menos de 40")
+	@Size(min = 3,max = 40,message = "Debe tener mas de 3 caracteres y menos de 40")
 	private String direccion;
 	
 	@NotEmpty(message = "Campo no puede estar vacio")
