@@ -7,8 +7,8 @@ import com.chiletel.dto.AgendaEventosDTO;
 
 /**
  * <h2>Descripción:</h2>
- * Definir los metodos que se usaran para interactuar con la entidad agenda<br>
- * lo cual se realiza mediate jbdc
+ * Definir los metodos que se usaran para interactuar con la entidad agenda.<br>
+ * La interacción se realiza con jbdc.
  * @author Brayan Baquero
  *
  */
@@ -23,7 +23,7 @@ public interface IAgendaDao {
 	
 	/**
 	 * <h2>Descripción:</h2>
-	 * Este metodo se encarga de obtener los eventos (ordenes de atención agendadas) de un tecnico <br>
+	 * Este metodo se encarga de obtener los eventos (ordenes de atención agendadas) de un técnico <br>
 	 * en un periodo de tiempo especifico.
 	 * @return list<{@link AgendaEventosDTO}>
 	 */

@@ -30,7 +30,7 @@ import io.swagger.annotations.ApiResponses;
 
 /**
  * <h2>Descripción:</h2>
- * Controlador que se exponer endpoint de api para gestionar los técnicos
+ * Controlador en el que exponen los endpoint del api para gestionar los técnicos
  * @author Brayan  Baquero
  *
  */

@@ -28,7 +28,7 @@ import io.swagger.annotations.ApiOperation;
 
 /**
  * <h2>Descripción:</h2>
- * Controlador que se exponer endpoint de api para gestionar los daños.
+ * Controlador en el que exponen los endpoint del api para gestionar los daños.
  * @author Brayan  Baquero
  */
 @Api(tags = "5: Daños de servicio",description = "Daños en el servicio de telefonico")

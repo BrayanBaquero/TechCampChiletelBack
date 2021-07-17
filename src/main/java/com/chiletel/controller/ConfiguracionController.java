@@ -25,7 +25,7 @@ import io.swagger.annotations.ApiOperation;
 
 /**
  * <h2>Descripción:</h2>
- * Controlador que se exponer endpoint de api para gestionar la configuración<br>
+ * Controlador en el que se exponen los endpoint del api para gestionar la configuración<br>
  * de tipos de daño y tipos de cliente
  * @author Brayan  Baquero
  */

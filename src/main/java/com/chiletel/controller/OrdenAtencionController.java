@@ -21,7 +21,7 @@ import io.swagger.annotations.ApiOperation;
 
 /**
  * <h2>Descripción:</h2>
- * Controlador que se exponer endpoint de api ver las ordenes de atención no agendadas.
+ * Controlador en el que exponen los endpoint del api para ver las ordenes de atención no agendadas.
  * @author Brayan  Baquero
  */
 @Api(tags = "6: Ordenes de atención",description = "Ver ordenes de atención")

@@ -33,7 +33,7 @@ import io.swagger.annotations.ApiResponses;
 
 /**
  * <h2>Descripción:</h2>
- * Controlador que se exponer endpoint de api para gestionar las cuadrillas.
+ * Controlador en el que se  exponen los endpoint del api para gestionar las cuadrillas.
  * @author Brayan  Baquero
  */
 @Api(tags = "3: Cuadrilla",description = "Gestión de cuadrillas")

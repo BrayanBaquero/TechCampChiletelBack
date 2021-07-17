@@ -22,7 +22,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 
 /**
  * <h2>Descripción:</h2>
- * Clase de configuración de swaguer 3 para documentación de la api.
+ * Clase de configuración de swagger 3 para documentación de la api.
  * @author Brayan Baquero
  *
  */
