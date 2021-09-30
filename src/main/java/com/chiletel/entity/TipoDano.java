@@ -18,7 +18,7 @@ import lombok.Data;
 		name = "TIPOS_INCIDENCIA",
 		uniqueConstraints = { @UniqueConstraint(name = "UK_TIPOS_INCIDENCIA_01", columnNames = { "prioridad"})}
 	)
-public class TipoDaño {
+public class TipoDano {
 	@Id
 	@GeneratedValue( strategy  = GenerationType.SEQUENCE, generator = "TIPOS_INCIDENCIA_SEQ")
     @SequenceGenerator(sequenceName = "TIPOS_INCIDENCIA_SEQ", allocationSize = 1, name = "TIPOS_INCIDENCIA_SEQ")

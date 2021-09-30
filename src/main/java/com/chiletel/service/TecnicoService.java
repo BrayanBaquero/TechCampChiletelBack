@@ -16,13 +16,13 @@ import org.springframework.stereotype.Service;
 import com.chiletel.dto.TecnicoDTO;
 import com.chiletel.entity.Cuadrilla;
 import com.chiletel.entity.Tecnico;
-import com.chiletel.entity.TipoDaño;
+import com.chiletel.entity.TipoDano;
 import com.chiletel.exceptionHandler.BadRequestException;
 import com.chiletel.exceptionHandler.NotFoundException;
 import com.chiletel.mapper.TecnicoMapper;
 import com.chiletel.repository.ICuadrillaRepository;
 import com.chiletel.repository.ITecnicoRepository;
-import com.chiletel.repository.ITipoDañoRepository;
+import com.chiletel.repository.ITipoDanoRepository;
 
 /**
  * <strong>Descrcipción:</strong>
@@ -34,7 +34,7 @@ public class TecnicoService implements ITecnicoService{
 	@Autowired
 	private ITecnicoRepository tecnicoRepo;
 	@Autowired
-	private ITipoDañoRepository tipoDañoRepo;
+	private ITipoDanoRepository tipoDanoRepo;
 	@Autowired
 	private ICuadrillaRepository cuadrillaRepo;
 	@Autowired
@@ -55,14 +55,14 @@ public class TecnicoService implements ITecnicoService{
 		Cuadrilla cuadrilla=cuadrillaRepo.findByNombre(tecnicoDTO.getCuadrilla())
 				.orElseThrow(()->new BadRequestException("Cuadrilla no existe"));
 		Tecnico tecnico= mapperTecnico.ToEntity(tecnicoDTO);
-		Set<TipoDaño> tdaños=new HashSet<>();
-		tecnicoDTO.getTDano().forEach(daño->{
-			TipoDaño td=tipoDañoRepo.findByNombre(daño)
-					.orElseThrow(()->new NotFoundException("El tipo de daño "+daño+" no existe"));
-			tdaños.add(td);
+		Set<TipoDano> tdanos=new HashSet<>();
+		tecnicoDTO.getTDano().forEach(dano->{
+			TipoDano td=tipoDanoRepo.findByNombre(dano)
+					.orElseThrow(()->new NotFoundException("El tipo de daño "+dano+" no existe"));
+			tdanos.add(td);
 		});
 		tecnico.setCuadrilla(cuadrilla);
-		tecnico.setTDaño(tdaños);
+		tecnico.setTDano(tdanos);
 		tecnicoRepo.save(tecnico);
 	}
 
@@ -74,14 +74,14 @@ public class TecnicoService implements ITecnicoService{
 				.orElseThrow(()->new BadRequestException("Cuadrilla no existe"));
 		//Mapeo de dto a entidad-------------------------
 		Tecnico tecnico=mapperTecnico.ToEntity(tecnicoDTO);
-		Set<TipoDaño> tdaños=new HashSet<>();
-		tecnicoDTO.getTDano().forEach(daño->{
-			TipoDaño td=tipoDañoRepo.findByNombre(daño)
-					.orElseThrow(()->new NotFoundException("El tipo de daño "+daño+" no existe"));
-			tdaños.add(td);
+		Set<TipoDano> tdanos=new HashSet<>();
+		tecnicoDTO.getTDano().forEach(dano->{
+			TipoDano td=tipoDanoRepo.findByNombre(dano)
+					.orElseThrow(()->new NotFoundException("El tipo de daño "+dano+" no existe"));
+			tdanos.add(td);
 		});
 		tecnico.setCuadrilla(cuadrilla);
-		tecnico.setTDaño(tdaños);
+		tecnico.setTDano(tdanos);
 		tecnico.setId(temp.getId());
 		//-----------------------------------------------
 		tecnicoRepo.save(tecnico);
@@ -92,7 +92,7 @@ public class TecnicoService implements ITecnicoService{
 		Tecnico tecnico=tecnicoRepo.findBynumeroIden(ident)
 				.orElseThrow(()->new NotFoundException("Tecnico con identificacion :"+ident+" no existe o ya ha sido eliminado"));
 		tecnico.setBorrado(1);
-		tecnico.setTDaño(null);//Borrar relaciones de tabla pivot
+		tecnico.setTDano(null);//Borrar relaciones de tabla pivot
 		tecnicoRepo.save(tecnico);
 	}
 

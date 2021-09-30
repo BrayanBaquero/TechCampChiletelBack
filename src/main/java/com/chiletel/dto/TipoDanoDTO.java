@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TipoDañoDTO {
+public class TipoDanoDTO {
 	@Size(min = 3,max = 40)
 	private String nombre;
 	@Min(value = 1)

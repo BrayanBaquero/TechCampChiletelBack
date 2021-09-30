@@ -52,7 +52,7 @@ public class Tecnico {
 	@ManyToOne(optional = true,fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_CUADRILLA",foreignKey = @ForeignKey(name = "FK_TECNICO_CUADRILLA_01") )
 	private Cuadrilla cuadrilla;
-	@Column(name ="BORRADO",columnDefinition = "NUMBER(1) DEFAULT 0 NOT NULL")
+	@Column(name ="BORRADO",columnDefinition = "INTEGER DEFAULT 0 NOT NULL")
 	private int borrado;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
@@ -61,6 +61,6 @@ public class Tecnico {
 			   							,name="ID_TECNICO"),
 			   inverseJoinColumns = @JoinColumn(foreignKey = @ForeignKey(name = "FK_TIPOS_INCIDENCIA_TECNICOS_01") 
 												,name="ID_TIPO_INCIDENCIA"))
-	private Set<TipoDaño> tDaño=new HashSet<>();
+	private Set<TipoDano> tDano=new HashSet<>();
 
 }

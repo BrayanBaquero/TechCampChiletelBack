@@ -31,9 +31,9 @@ public class OrdenAtencion {
 	private int id;
 	@OneToOne(fetch = FetchType.LAZY,optional = false)
 	@JoinColumn(name = "ID_INCIDENCIA",foreignKey = @ForeignKey(name = "FK_ORDENES_ATENCION_INCIDENCIAS_01") )
-	private Daño daño;
+	private Dano dano;
 	//@Column(name = "NUMERO_ORDEN",length = 100)
 	//private String numOrden;
-	@Column(name = "AGENDADO",columnDefinition = "NUMBER(1) DEFAULT 0",nullable = false)
+	@Column(name = "AGENDADO",columnDefinition = "INTEGER DEFAULT 0",nullable = false)
 	private int agendado;
 }

@@ -34,19 +34,19 @@ public class AgendaDao implements IAgendaDao{
 	@Autowired
     private JdbcTemplate jdbcTemplate;
 	
-	private static final String nombrePaquete="pkg_agendamiento_ordenes";
+	//private static final String nombrePaquete="pkg_agendamiento_ordenes";
 	private static final String spOrquestador="sp_main";
 	
 	@Override
 	public int agendarOrdenes() {
 		SimpleJdbcCall simpleJdbcCall=new SimpleJdbcCall(jdbcTemplate)
-				.withCatalogName(nombrePaquete)
-				.withProcedureName(spOrquestador);
+				//.withCatalogName(nombrePaquete)
+				.withFunctionName(spOrquestador);
 		SqlParameterSource in = new MapSqlParameterSource();
 		try {
 			Map<String, Object> out=simpleJdbcCall.execute(in);
 			if(out!=null) {
-				return ((BigDecimal)out.get("ESTADO")).intValueExact();
+				return (int) out.get("returnvalue");
 			}
 		} catch (Exception e) {
 			//System.err.println(e.getMessage());

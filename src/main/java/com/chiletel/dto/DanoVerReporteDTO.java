@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DañoVerReporteDTO {
+public class DanoVerReporteDTO {
 	private long numeroIden;
 	private String tipoDano;
 	private Date fecha;

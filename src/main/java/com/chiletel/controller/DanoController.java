@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.chiletel.dto.DañoNuevoDTO;
-import com.chiletel.dto.DañoVerReporteDTO;
-import com.chiletel.service.IDañoService;
+import com.chiletel.dto.DanoNuevoDTO;
+import com.chiletel.dto.DanoVerReporteDTO;
+import com.chiletel.service.IDanoService;
 import com.chiletel.utils.MessageOk;
 
 import io.swagger.annotations.Api;
@@ -35,26 +35,26 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping("/api/daño")
 @CrossOrigin
-public class DañoController {
+public class DanoController {
 	
 	@Autowired
-	private IDañoService iDañoService;
+	private IDanoService iDanoService;
 	
 	@ApiOperation(value = "Obtiene lista de daños reportados  ")
 	@GetMapping
-	public ResponseEntity<Page<DañoVerReporteDTO>> getAll(
+	public ResponseEntity<Page<DanoVerReporteDTO>> getAll(
 			@RequestParam(defaultValue = "0") int page,
 			@RequestParam(defaultValue = "10")int size
 			){
 		Pageable pageable=PageRequest.of(page, size,Sort.by("fechaRegistro").descending());
-		return new ResponseEntity<Page<DañoVerReporteDTO>>(iDañoService.getDaños(pageable),HttpStatus.OK);
+		return new ResponseEntity<Page<DanoVerReporteDTO>>(iDanoService.getDanos(pageable),HttpStatus.OK);
 	}
 	
 	
 	@ApiOperation(value = "Registrar un nuevo daño")
 	@PostMapping
-	public ResponseEntity<MessageOk> add(@Valid @RequestBody DañoNuevoDTO dañoDTO){
-		iDañoService.addDaño(dañoDTO);
+	public ResponseEntity<MessageOk> add(@Valid @RequestBody DanoNuevoDTO danoDTO){
+		iDanoService.addDano(danoDTO);
 		return new ResponseEntity<MessageOk>(new MessageOk("Se ha registrado el daño."),HttpStatus.CREATED);
 	}
 	

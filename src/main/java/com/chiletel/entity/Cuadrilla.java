@@ -35,7 +35,7 @@ public class Cuadrilla {
 	private int id;
 	@Column(name = "NOMBRE",length = 20)
 	private String nombre;
-	@Column(name = "BORRADO" ,columnDefinition = "NUMBER(1) DEFAULT 0 NOT NULL")
+	@Column(name = "BORRADO" ,columnDefinition = "INTEGER DEFAULT 0 NOT NULL")
 	private int borrado;
 	
 	@ManyToMany(fetch = FetchType.EAGER)

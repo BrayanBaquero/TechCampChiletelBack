@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.chiletel.dto.TipoClienteDTO;
-import com.chiletel.dto.TipoDañoDTO;
+import com.chiletel.dto.TipoDanoDTO;
 import com.chiletel.service.ITipoClienteService;
-import com.chiletel.service.ITipoDañoService;
+import com.chiletel.service.ITipoDanoService;
 import com.chiletel.utils.MessageOk;
 
 import io.swagger.annotations.Api;
@@ -37,7 +37,7 @@ import io.swagger.annotations.ApiOperation;
 public class ConfiguracionController {
 	
 	@Autowired
-	private ITipoDañoService iTipoDañoService;
+	private ITipoDanoService iTipoDanoService;
 	@Autowired
 	private ITipoClienteService iTipoClienteService;
 	
@@ -57,14 +57,14 @@ public class ConfiguracionController {
 	
 	@ApiOperation(value = "Obtener lista de tipos de daño")
 	@GetMapping("/tipodano")
-	public ResponseEntity<List<TipoDañoDTO>> getAllTipoDaño(){
-		return new ResponseEntity<List<TipoDañoDTO>>(iTipoDañoService.getAllTipoDaño(),HttpStatus.OK);
+	public ResponseEntity<List<TipoDanoDTO>> getAllTipoDano(){
+		return new ResponseEntity<List<TipoDanoDTO>>(iTipoDanoService.getAllTipoDano(),HttpStatus.OK);
 	}
 	
 	@ApiOperation(value = "Actualizar tiempo de atención de los tipos de daño")
 	@PutMapping("/tipodano")
-	public ResponseEntity<MessageOk> updateTipoDaño(@Valid @RequestBody  List<TipoDañoDTO> tipoDañoDTOs){
-		iTipoDañoService.updateTipoDaño(tipoDañoDTOs);
+	public ResponseEntity<MessageOk> updateTipoDano(@Valid @RequestBody  List<TipoDanoDTO> tipoDanoDTOs){
+		iTipoDanoService.updateTipoDano(tipoDanoDTOs);
 		return new ResponseEntity<MessageOk>(new MessageOk("Se actualizaron los datos correctamente."),HttpStatus.OK);
 	}
 

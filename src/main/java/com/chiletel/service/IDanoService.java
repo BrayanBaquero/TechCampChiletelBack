@@ -4,8 +4,8 @@ package com.chiletel.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.chiletel.dto.DañoNuevoDTO;
-import com.chiletel.dto.DañoVerReporteDTO;
+import com.chiletel.dto.DanoNuevoDTO;
+import com.chiletel.dto.DanoVerReporteDTO;
 
 /**
  * <p>
@@ -14,20 +14,20 @@ import com.chiletel.dto.DañoVerReporteDTO;
  * sobre DB para DañosService
  * @author Brayan Baquero
  */
-public interface IDañoService {
+public interface IDanoService {
 	
 	/**
 	 * <h2>Descripción:</h2>
 	 * Añadir un nuevo daño.
 	 * @param dañoDTO
 	 */
-	public void addDaño(DañoNuevoDTO dañoDTO);
+	public void addDano(DanoNuevoDTO danoDTO);
 	
 	/**
 	 * <h2>Descripción:</h2>
 	 * Obtener los daños registrados paginados-
 	 * @param pageable
-	 * @return page<{@link DañoVerReporteDTO}>
+	 * @return page<{@link DanoVerReporteDTO}>
 	 */
-	public Page<DañoVerReporteDTO> getDaños(Pageable pageable);
+	public Page<DanoVerReporteDTO> getDanos(Pageable pageable);
 }

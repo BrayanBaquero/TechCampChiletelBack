@@ -34,9 +34,9 @@ public class OrdenAtencionMapper {
 		OrdenAtencionDTO ordenAtencionDTO=null;
 		if(ordenAtencion!=null) {
 			mapper.typeMap(OrdenAtencion.class, OrdenAtencionDTO.class)
-			.addMapping(x -> x.getDaño().getTipoDaño().getNombre(), OrdenAtencionDTO::setIncidencia)
-			.addMapping(x -> x.getDaño().getCliente().getNumeroIden(), OrdenAtencionDTO::setCliente)
-			.addMapping(x -> x.getId(), OrdenAtencionDTO::setNumOrden);;
+			.addMapping(x -> x.getDano().getTipoDano().getNombre(), OrdenAtencionDTO::setIncidencia)
+			.addMapping(x -> x.getDano().getCliente().getNumeroIden(), OrdenAtencionDTO::setCliente)
+			.addMapping(x -> x.getId(), OrdenAtencionDTO::setNumOrden);
 			ordenAtencionDTO=mapper.map(ordenAtencion, OrdenAtencionDTO.class);
 		}
 		return ordenAtencionDTO;

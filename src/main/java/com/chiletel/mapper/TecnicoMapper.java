@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 import com.chiletel.dto.TecnicoDTO;
 import com.chiletel.entity.Tecnico;
-import com.chiletel.entity.TipoDaño;
+import com.chiletel.entity.TipoDano;
 
 /**
  * <h2>Descripción:</h2>
@@ -32,12 +32,12 @@ public class TecnicoMapper  {
 	/**
 	<h2>Descripción:</h2>
 	Conversor de la libreria {@link ModelMapper} para obtener de un 
-	Set<{@link TipoDaño}> un  Set< TipoDaño.getNombre()>
+	Set<{@link TipoDano}> un  Set< TipoDaño.getNombre()>
 	 */
-	Converter<Set<TipoDaño>, Set<String>> TDañosListConverter = new AbstractConverter<Set<TipoDaño>, Set<String>>() {
+	Converter<Set<TipoDano>, Set<String>> TDanosListConverter = new AbstractConverter<Set<TipoDano>, Set<String>>() {
 		@Override
-		protected Set<String> convert(Set<TipoDaño> source) {
-			return source.stream().map(TipoDaño::getNombre).collect(Collectors.toSet());
+		protected Set<String> convert(Set<TipoDano> source) {
+			return source.stream().map(TipoDano::getNombre).collect(Collectors.toSet());
 			}
 		};
 	
@@ -52,7 +52,7 @@ public class TecnicoMapper  {
 		if(tecnico!=null) {
 			mapper.typeMap(Tecnico.class, TecnicoDTO.class)
 				.addMapping(x -> x.getCuadrilla().getNombre(), TecnicoDTO::setCuadrilla)
-				.addMappings(mapper->mapper.using(TDañosListConverter).map(Tecnico::getTDaño, TecnicoDTO::setTDano));
+				.addMappings(mapper->mapper.using(TDanosListConverter).map(Tecnico::getTDano, TecnicoDTO::setTDano));
 				//.addMappings(m->m.using(ctx->((String)ctx.getSource()).toUpperCase()).map(Tecnico::getNombre, TecnicoDTO::setNombre))
 			tecnicoDTO=mapper.map(tecnico, TecnicoDTO.class);
 		}

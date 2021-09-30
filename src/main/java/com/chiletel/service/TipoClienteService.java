@@ -28,10 +28,10 @@ public class TipoClienteService implements ITipoClienteService {
 
 	@Override
 	public List<TipoClienteDTO> getAllTipoCliente() {
-		List<TipoCliente> tipoDaños=tipoClienteRepo.findAll();
-		if(tipoDaños.isEmpty())
+		List<TipoCliente> tipoDanos=tipoClienteRepo.findAll();
+		if(tipoDanos.isEmpty())
 			throw new NotFoundException("No hay ningun tipo de cliente");
-		return tipoClienteMapper.toDtos(tipoDaños);
+		return tipoClienteMapper.toDtos(tipoDanos);
 	}
 	
 	@Transactional

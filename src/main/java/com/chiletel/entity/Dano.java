@@ -31,7 +31,7 @@ import lombok.NoArgsConstructor;
 		name = "INCIDENCIAS",
 		indexes = @Index(name="IDX_INCIDENCIAS_01",columnList = "FECHA_REGISTRO",unique=false)
 	)
-public class Daño {
+public class Dano {
 	@Id
 	@GeneratedValue( strategy  = GenerationType.SEQUENCE, generator = "INCIDENCIAS_SEQ")
     @SequenceGenerator(sequenceName = "INCIDENCIAS_SEQ", allocationSize = 1, name = "INCIDENCIAS_SEQ")
@@ -42,7 +42,7 @@ public class Daño {
 	private Cliente cliente;
 	@ManyToOne(optional = false,fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_TIPO_INCIDENCIA",foreignKey = @ForeignKey(name = "FK_INCIDENCIAS_TIPOS_INCIDENCIA_02") )
-	private TipoDaño tipoDaño;
+	private TipoDano tipoDano;
 	@Column(name = "DESCRIPCION",length = 150)
 	private String descripcion;
 	@CreationTimestamp

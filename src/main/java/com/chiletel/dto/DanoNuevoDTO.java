@@ -20,14 +20,14 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DañoNuevoDTO {
+public class DanoNuevoDTO {
 	
 	@Digits(integer = 11,fraction = 0)
 	@Min(value = 10000)
 	private long cliente;
 	
 	@Size(min = 3,max = 40)
-	private String tipoDaño;
+	private String tipoDano;
 	
 	@Size(min = 3,max = 150)
 	private String descripcion;

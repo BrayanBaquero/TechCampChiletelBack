@@ -10,58 +10,58 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.chiletel.dto.DañoNuevoDTO;
-import com.chiletel.dto.DañoVerReporteDTO;
+import com.chiletel.dto.DanoNuevoDTO;
+import com.chiletel.dto.DanoVerReporteDTO;
 import com.chiletel.entity.Cliente;
-import com.chiletel.entity.Daño;
+import com.chiletel.entity.Dano;
 import com.chiletel.entity.OrdenAtencion;
-import com.chiletel.entity.TipoDaño;
+import com.chiletel.entity.TipoDano;
 import com.chiletel.exceptionHandler.NotFoundException;
-import com.chiletel.mapper.DañoMapper;
+import com.chiletel.mapper.DanoMapper;
 import com.chiletel.repository.IClienteRepository;
-import com.chiletel.repository.IDañoRepository;
+import com.chiletel.repository.IDanoRepository;
 import com.chiletel.repository.IOrdenAtencionRepository;
-import com.chiletel.repository.ITipoDañoRepository;
+import com.chiletel.repository.ITipoDanoRepository;
 
 /**
  * <h2>Descrcipción:</h2>
- * Clase encargada de implementar los metodos definidos en {@link IDañoService}
+ * Clase encargada de implementar los metodos definidos en {@link IDanoService}
  * @author Brayan Baquero
  */
 @Service
-public class DañoService implements IDañoService {
+public class DanoService implements IDanoService {
 	
 	@Autowired
-	private IDañoRepository dañoRepo;
+	private IDanoRepository danoRepo;
 	@Autowired
 	private IClienteRepository clienteRepo;
 	@Autowired
-	private ITipoDañoRepository tipoDañoRepo;
+	private ITipoDanoRepository tipoDanoRepo;
 	@Autowired
 	private IOrdenAtencionRepository ordenAtencionRepo;
 	@Autowired 
-	private DañoMapper dañoMapper;
+	private DanoMapper danoMapper;
 
 	@Transactional
 	@Override
-	public void addDaño(DañoNuevoDTO dañoDTO) {
-		Cliente cliente=clienteRepo.findByNumeroIden(dañoDTO.getCliente())
+	public void addDano(DanoNuevoDTO danoDTO) {
+		Cliente cliente=clienteRepo.findByNumeroIden(danoDTO.getCliente())
 				.orElseThrow(()->new NotFoundException("El cliente no existe"));
-		TipoDaño tipoDaño=tipoDañoRepo.findByNombre(dañoDTO.getTipoDaño())
+		TipoDano tipoDano=tipoDanoRepo.findByNombre(danoDTO.getTipoDano())
 				.orElseThrow(()->new NotFoundException("El tipo de daño a reportar no existe."));
-		Daño daño=dañoMapper.toEntity(dañoDTO);
-		daño.setCliente(cliente);
-		daño.setTipoDaño(tipoDaño);
+		Dano dano=danoMapper.toEntity(danoDTO);
+		dano.setCliente(cliente);
+		dano.setTipoDano(tipoDano);
 		OrdenAtencion ordenAtencion=new OrdenAtencion();
-		ordenAtencion.setDaño(dañoRepo.save(daño));
+		ordenAtencion.setDano(danoRepo.save(dano));
 		//ordenAtencion.setNumOrden(UUID.randomUUID().toString());
 		ordenAtencionRepo.save(ordenAtencion);	
 	}
 
 	@Override
-	public Page<DañoVerReporteDTO> getDaños(Pageable pageable) {
-		Page<Daño> dañoVRPage=dañoRepo.findAll(pageable);
-		List<DañoVerReporteDTO> dañoVRDto=dañoMapper.toDtoDañoVerReportes(dañoVRPage.getContent());
-		return new PageImpl<DañoVerReporteDTO>(dañoVRDto,pageable,dañoVRPage.getTotalElements());
+	public Page<DanoVerReporteDTO> getDanos(Pageable pageable) {
+		Page<Dano> danoVRPage=danoRepo.findAll(pageable);
+		List<DanoVerReporteDTO> danoVRDto=danoMapper.toDtoDanoVerReportes(danoVRPage.getContent());
+		return new PageImpl<DanoVerReporteDTO>(danoVRDto,pageable,danoVRPage.getTotalElements());
 	}
 }
