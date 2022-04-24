@@ -66,7 +66,7 @@ public class MainSecurity extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
-		http.cors().and().
+		http.cors().and()
 			.authorizeRequests()
 			.antMatchers("/auth/**",
 						"/v2/api-docs/**",
