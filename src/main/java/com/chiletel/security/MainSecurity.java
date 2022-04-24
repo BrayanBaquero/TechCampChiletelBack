@@ -21,7 +21,7 @@ import com.chiletel.security.jwt.JwtTokenFilter;
 import com.chiletel.security.service.UserDetailsServiceImpl;
 
 /**
- * <h2>Descripción:<h2>
+ * <h2>Descripciï¿½n:<h2>
  * Se definen configuraciones generales para la seguridad de la api.
  * @author Brayan Baquero
  *
@@ -66,7 +66,7 @@ public class MainSecurity extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
-		http.cors().and().csrf().disable()
+		http.cors().and().
 			.authorizeRequests()
 			.antMatchers("/auth/**",
 						"/v2/api-docs/**",
@@ -79,7 +79,8 @@ public class MainSecurity extends WebSecurityConfigurerAdapter{
 			.and()
 			.exceptionHandling().authenticationEntryPoint(jwtEntryPoint)
 			.and()
-			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+			csrf().disable();
 		http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
  
