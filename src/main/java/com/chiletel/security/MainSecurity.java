@@ -80,7 +80,7 @@ public class MainSecurity extends WebSecurityConfigurerAdapter{
 			.exceptionHandling().authenticationEntryPoint(jwtEntryPoint)
 			.and()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-			csrf().disable();
+			.csrf().disable();
 		http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
  
